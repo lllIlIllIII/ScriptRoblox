@@ -46,7 +46,8 @@ function loading()
 	
 	Logo.Name = "Logo"
 	Logo.Parent = Load
-	Logo.BackgroundColor3 = Color3.fromRGB(35, 35, 35)                     Logo.BackgroundTransparency = 1.000
+	Logo.BackgroundColor3 = Color3.fromRGB(35, 35, 35)         
+	Logo.BackgroundTransparency = 1.000
 	Logo.Position = UDim2.new(0, 15, 0, 10)
 	Logo.Size = UDim2.new(0, 100, 0, 100)
 	Logo.Image = "rbxassetid://12362129605"
@@ -163,7 +164,7 @@ BtnStroke.Name = "BtnStroke"
 			Load:Destroy()
       if game.PlaceId == 3101667897 then
     loadstring(Game:HttpGet"https://raw.githubusercontent.com/lllIlIllIII/ScriptRoblox/main/TurboHub/GameList/LegendsOfSpeed.lua")()
-   elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 ohttpsr game.PlaceId == 7449423635 then
+   elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then
     loadstring(Game:HttpGet"https://raw.githubusercontent.com/lllIlIllIII/ScriptRoblox/main/TurboHub/GameList/BloxFruits.lua")()
    elseif game.PlaceId == 3956818381 then
     loadstring(Game:HttpGet"https://raw.githubusercontent.com/lllIlIllIII/ScriptRoblox/main/TurboHub/GameList/NinjaLegends.lua")()

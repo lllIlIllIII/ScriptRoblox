@@ -11529,7 +11529,7 @@ end)
                     TP(CFrame.new(-1994.51038, 125.519142, -72.2622986, -0.16715166, -6.55417338e-08, -0.985931218, -7.13315558e-08, 1, -5.43836585e-08, 0.985931218, 6.12376851e-08, -0.16715166))
                 elseif _G.SelectNPC == "Random Devil Fruit" then
                     TP(CFrame.new(-1436.19727, 61.8777695, 4.75247526, -0.557794094, 2.74216543e-08, 0.829979479, 5.83273234e-08, 1, 6.16037932e-09, -0.829979479, 5.18467118e-08, -0.557794094))
-                elseif _G.SelectNPC == "Blox Fruits Dealer" then
+                -- elseif _G.SelectNPC == "Blox Fruits Dealer" then
                     TP(CFrame.new(-923.255066, 7.67800522, 1608.61011, 1, 0, 0, 0, 1, 0, 0, 0, 1))
                 elseif _G.SelectNPC == "Remove Devil Fruit" then
                     TP(CFrame.new(5664.80469, 64.677681, 867.85907, 1, 0, 0, 0, 1, 0, 0, 0, 1))
@@ -11541,11 +11541,11 @@ end)
                     TP(CFrame.new(-5389.49561, 13.283, -2149.80151, 1, 0, 0, 0, 1, 0, 0, 0, 1))
                 elseif _G.SelectNPC == "Fishman Karate" then
                     TP( CFrame.new(61581.8047, 18.8965912, 987.832703, 1, 0, 0, 0, 1, 0, 0, 0, 1))
-                elseif _G.SelectNPC == "Random Devil Fruit" then
-                    TP(CFrame.new(-12491, 337, -7449))
-                elseif _G.SelectNPC == "Blox Fruits Dealer" then
-                    TP(CFrame.new(-12511, 337, -7448))
-                elseif _G.SelectNPC == "Remove Devil Fruit" then
+                -- elseif _G.SelectNPC == "Random Devil Fruit" then
+                --     TP(CFrame.new(-12491, 337, -7449))
+                -- elseif _G.SelectNPC == "Blox Fruits Dealer" then
+                --     TP(CFrame.new(-12511, 337, -7448))
+                -- elseif _G.SelectNPC == "Remove Devil Fruit" then
                     TP(CFrame.new(-5571, 1089, -2661))
                 elseif _G.SelectNPC == "Horned Man" then
                     TP(CFrame.new(-11890, 931, -8760))

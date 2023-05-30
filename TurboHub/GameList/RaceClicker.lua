@@ -193,11 +193,11 @@ farm:Dropdown("Select Mode",{
 },function(value)
     setrace = value
 if setrace == "Super Fast" then
-        setrace = 99999999,0,0
+        setrace = {99999999,0,0}
 elseif setrace == "Auto Finish" then
-        setrace = -442415.71875, 2.9999988079071045, -70.02269744873047
+        setrace = {-442415.71875, 2.9999988079071045, -70.02269744873047}
 elseif setrace =="Fast" then 
-        setrace = 999999,0,0
+        setrace = {999999,0,0}
        end
 end)
 local delay

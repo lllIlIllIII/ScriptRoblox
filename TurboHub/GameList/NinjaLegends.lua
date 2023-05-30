@@ -96,7 +96,7 @@ game:GetService("ReplicatedStorage").rEvents.tradingEvent:FireServer(unpack(args
 	while _G.Chat == true do
 		wait(1)
 local args = {
-    [1] = "Uciha Hub The Beast",
+    [1] = "Turbo Hub The Beast",
     [2] = "All"
 }
 

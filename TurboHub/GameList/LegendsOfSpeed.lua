@@ -915,7 +915,7 @@ ts:Teleport(game.PlaceId, p)
 end)
  								
 misc:Button("Destroy Gui",function()
-game.CoreGui["ZENHUB"]:Destroy()
+game.CoreGui["TURBOHUB"]:Destroy()
 end)
 
 

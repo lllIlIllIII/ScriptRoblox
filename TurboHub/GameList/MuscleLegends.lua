@@ -267,107 +267,107 @@ end
 
 AutoFarm:Seperator("Auto Farm")
 
-AutoFarm:Toggle("Auto-Frost-Lift", false, function(vu)
+AutoFarm:Toggle("Auto Frost Lift", false, function(vu)
     AutoFrostLift = vu
 end)
 
-AutoFarm:Toggle("Auto-Frost-Press", false, function(vu)
+AutoFarm:Toggle("Auto Frost Press", false, function(vu)
     AutoFrostPress = vu
 end)
 
-AutoFarm:Toggle("Auto-Frost-Squat", false, function(vu)
+AutoFarm:Toggle("Auto Frost Squat", false, function(vu)
     AutoFrostSquat = vu
 end)
 
-AutoFarm:Toggle("Auto-Punch-Forzen-Rock", false, function(vu)
+AutoFarm:Toggle("Auto Punch Forzen Rock", false, function(vu)
     AutoPunchForzen = vu
 end)
 
-AutoFarm:Seperator("Mystical-Gym")
+AutoFarm:Seperator("Mystical Gym")
 
-AutoFarm:Toggle("Auto-Mystical-Pullup", false, function(vu)
+AutoFarm:Toggle("Auto Mystical Pullup", false, function(vu)
     AutoMysticalPullup = vu
 end)
 
-AutoFarm:Toggle("Auto-Mystical-Throw", false, function(vu)
+AutoFarm:Toggle("Auto Mystical Throw", false, function(vu)
     AutoMysticalThrow = vu
 end)
 
-AutoFarm:Toggle("Auto-Mystical-Press", false, function(vu)
+AutoFarm:Toggle("Auto Mystical Press", false, function(vu)
     AutoMysticalPress = vu
 end)
 
-AutoFarm:Toggle("Auto-Punch-Mystic-Rock", false, function(vu)
+AutoFarm:Toggle("Auto Punch Mystic Rock", false, function(vu)
     AutoPunchMystical = vu
 end)
 
-AutoFarm:Seperator("Eternal-Gym")
+AutoFarm:Seperator("Eternal Gym")
 
-AutoFarm:Toggle("Auto-Eternal-Gym", false, function(vu)
+AutoFarm:Toggle("Auto Eternal Gym", false, function(vu)
     AutoEternalGym = vu
 end)
 
-AutoFarm:Toggle("Auto-Punch-Eternal-Rock", false, function(vu)
+AutoFarm:Toggle("Auto Punch Eternal Rock", false, function(vu)
     AutoEternalRock = vu
 end)
 
-AutoFarm:Seperator("Legends-Gym")
+AutoFarm:Seperator("Legends Gym")
 
-AutoFarm:Toggle("Auto-Legends-Pullup", false, function(vu)
+AutoFarm:Toggle("Auto Legends Pullup", false, function(vu)
     AutoLegendsPullup = vu
 end)
 
-AutoFarm:Toggle("Auto-Legends-Squat", false, function(vu)
+AutoFarm:Toggle("Auto Legends Squat", false, function(vu)
     AutoLegendsSquat = vu
 end)
 
-AutoFarm:Toggle("Auto-Legends-Lift", false, function(vu)
+AutoFarm:Toggle("Auto Legends Lift", false, function(vu)
     AutoLegendslift = vu
 end)
 
-AutoFarm:Toggle("Auto-Punch-Legends-Rock", false, function(vu)
+AutoFarm:Toggle("Auto Punch Legends Rock", false, function(vu)
     AutoLegendRock = vu
 end)
 
-AutoFarm:Seperator("Muscle-King-Gym")
+AutoFarm:Seperator("Muscle King Gym")
 
-AutoFarm:Toggle("Auto-Muscle-King-Lift", false, function(vu)
+AutoFarm:Toggle("Auto Muscle King Lift", false, function(vu)
     AutoMuscleKingLift = vu
 end)
 
-AutoFarm:Toggle("Auto-Muscle-King-Squat", false, function(vu)
+AutoFarm:Toggle("Auto Muscle King Squat", false, function(vu)
     AutoMuscleKingSquat = vu
 end)
 
-AutoFarm:Toggle("Auto-Muscle-King-Bench", false, function(vu)
+AutoFarm:Toggle("Auto Muscle King Bench", false, function(vu)
     AutoMuscleKingBench = vu
 end)
 
-AutoFarm:Toggle("Auto-Punch-Muscle-King-Rock", false, function(vu)
+AutoFarm:Toggle("Auto Punch Muscle King Rock", false, function(vu)
     AutoMuscleKingRock = vu
 end)
 
-AutoFarm:Toggle("Auto-Situps", false, function(vu)
+AutoFarm:Toggle("Auto Situps", false, function(vu)
     AutoSitups = vu
 end)
 
-AutoFarm:Toggle("Auto-Pushups", false, function(vu)
+AutoFarm:Toggle("Auto Pushups", false, function(vu)
     AutoPushups = vu
 end)
 
-AutoFarm:Toggle("Auto-Weight", false, function(vu)
+AutoFarm:Toggle("Auto Weight", false, function(vu)
     AutoWeight = vu
 end)
 
-AutoFarm:Toggle("Auto-Punch", false, function(vu)
+AutoFarm:Toggle("Auto Punch", false, function(vu)
     AutoPunch = vu
 end)
 
-AutoFarm:Toggle("Auto-Join-Brawl", false, function(vu)
+AutoFarm:Toggle("Auto Join Brawl", false, function(vu)
     AutoBrawl = vu
 end)
 
-AutoFarm:Seperator("Kills-Farm")
+AutoFarm:Seperator("Kills Farm")
 
 
 
@@ -384,7 +384,7 @@ PartStander1.Anchored = true
 PartStander1.Position = Vector3.new(338.941, 7800.44, 2208.97)
 
 ]]--
-AutoFarm:Toggle("Auto-Kills", false, function(vu)
+AutoFarm:Toggle("Auto Kills", false, function(vu)
     AutoKills = vu
 end)
 
