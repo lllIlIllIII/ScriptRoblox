@@ -1945,7 +1945,7 @@ end)
 
  
 --------------------------------------------------------------------
-local Update = loadstring(Game:HttpGet'https://raw.githubusercontent.com/lllIlIllIII/ScriptRoblox/main/TurboHub/GameList/TurboHub.lua')()
+local Update = loadstring(Game:HttpGet'https://raw.githubusercontent.com/lllIlIllIII/ScriptRoblox/main/DynamicHub/Library.lua')()
 local Library = Update:Window("Dynamic's - Hub ","")
 ------------------------------------------
 
