@@ -9,11 +9,15 @@ ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 ImageButton.Parent = ScreenGui
 ImageButton.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
-ImageButton.Size = UDim2.new(0, 80, 0, 80)
+ImageButton.Size = UDim2.new(0, 60, 0, 60)
 ImageButton.Draggable = true
 ImageButton.BackgroundColor3 = Color3.fromRGB(255, 0, 255)
 ImageButton.BackgroundTransparency = 1.000
 ImageButton.Image = "rbxassetid://13607307822"
+local MCNRb = Instance.new("UICorner")
+MCNRb.Name = "MCNR"
+MCNRb.Parent = ImageButton
+
 ImageButton.MouseButton1Down:connect(function()
 game.CoreGui:FindFirstChild("RELZHUB").Enabled = not game.CoreGui:FindFirstChild("RELZHUB").Enabled
 end)
@@ -218,10 +222,10 @@ local Logo = Instance.new("ImageLabel")
 	Logo.Name = "Logo"
 	Logo.Parent = Main
 	Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	Logo.BackgroundTransparency = 1.000
+	Logo.BackgroundTransparency = 0
 	Logo.Position = UDim2.new(0, 10, 0, 10)
 	Logo.Size = UDim2.new(0, 120, 0, 120)
-	Logo.Image = "rbxassetid://13607292675"
+	Logo.Image = "rbxassetid://13607406183"
 local Tab = Instance.new("Frame")
 Tab.Name = "Tab"
 Tab.Parent = Main
