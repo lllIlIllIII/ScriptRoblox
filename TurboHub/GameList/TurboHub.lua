@@ -112,10 +112,10 @@ Main.Size = UDim2.new(0, 0, 0, 0)
 local BackgroundImage = Instance.new("ImageLabel")
 BackgroundImage.Name = "BackgroundImage"
 BackgroundImage.Parent = Main
-BackgroundImage.BackgroundTransparency = 1 -- Mengatur transparansi gambar latar belakang menjadi 1 (transparan)
+BackgroundImage.BackgroundTransparency = 0 -- Mengatur transparansi gambar latar belakang menjadi 1 (transparan)
 BackgroundImage.Position = UDim2.new(0, 0, 0, 0)
 BackgroundImage.Size = UDim2.new(1, 0, 1, 0)
-BackgroundImage.Image = "rbxassetid://13606011374"
+BackgroundImage.Image = "rbxassetid://13606562528"
 
 --Main:TweenSize(UDim2.new(0, 656, 0, 400),"Out","Quad",0.4,true)
 --Main:TweenSize(UDim2.new(0, 656, 0, 350),"Out","Quad",0.4,true)
