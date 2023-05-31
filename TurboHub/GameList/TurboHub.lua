@@ -371,7 +371,7 @@ Title.Font = Enum.Font.GothamSemibold
 Title.Text = text
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 15.000
-Title.TextXAlignment = Enum.TextXAlignment.Left 
+-- Title.TextXAlignment = Enum.TextXAlignment.Left 
 			local IDK = Instance.new("ImageLabel")
 			IDK.Name = "LogoIDK"
 			IDK.Parent = TabButton
@@ -653,7 +653,7 @@ TextBtn.Size = UDim2.new(0, 385, 0, 32)
 TextBtn.AutoButtonColor = false
 TextBtn.Font = Enum.Font.GothamSemibold
 TextBtn.Text = text
-TextBtn.TextColor3 = Color3.fromRGB()
+TextBtn.TextColor3 = Color3.fromRGB(255,255,255)
 TextBtn.TextSize = 15.000
 
 UICorner_2.CornerRadius = UDim.new(0, 5)
