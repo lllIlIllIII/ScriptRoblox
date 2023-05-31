@@ -652,7 +652,7 @@ TextBtn.Size = UDim2.new(0, 385, 0, 32)
 TextBtn.AutoButtonColor = false
 TextBtn.Font = Enum.Font.GothamSemibold
 TextBtn.Text = text
-TextBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextBtn.TextColor3 = Color3.fromRGB(255,255,255)
 TextBtn.TextSize = 15.000
 
 UICorner_2.CornerRadius = UDim.new(0, 5)
@@ -660,10 +660,10 @@ UICorner_2.Parent = TextBtn
 
 Black.Name = "Black"
 Black.Parent = Button
-Black.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Black.BackgroundColor3 = Color3.fromRGB(120, 0, 255)
 Black.BackgroundTransparency = 1.000
 Black.BorderSizePixel = 0
-Black.Position = UDim2.new(0, 1, 0, 1)
+Black.Position = UDim2.new(0, 0, 0, 0)
 Black.Size = UDim2.new(0, 385, 0, 29)
 
 UICorner_3.CornerRadius = UDim.new(0, 5)
