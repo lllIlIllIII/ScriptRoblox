@@ -112,7 +112,7 @@ Main.Size = UDim2.new(0, 0, 0, 0)
 local BackgroundImage = Instance.new("ImageLabel")
 BackgroundImage.Name = "BackgroundImage"
 BackgroundImage.Parent = Main
-BackgroundImage.BackgroundTransparency = 1 -- Mengatur transparansi gambar latar belakang menjadi 1 (transparan)
+BackgroundImage.BackgroundTransparency = 0.8 -- Mengatur transparansi gambar latar belakang menjadi 1 (transparan)
 BackgroundImage.Position = UDim2.new(0, 0, 0, 0)
 BackgroundImage.Size = UDim2.new(1, 0, 1, 0)
 BackgroundImage.Image = "rbxassetid://13606562493"
@@ -134,6 +134,10 @@ BtnStroke.Name = "BtnStroke"
 local MCNR = Instance.new("UICorner")
 MCNR.Name = "MCNR"
 MCNR.Parent = Main
+
+local MBC = Instance.new("UICorner")
+MBC.Name = "MCNR"
+MBC.Parent = BackgroundImage
 
 local Top = Instance.new("Frame")
 Top.Name = "Top"
@@ -217,7 +221,7 @@ local Logo = Instance.new("ImageLabel")
 	Logo.BackgroundTransparency = 1.000
 	Logo.Position = UDim2.new(0, 10, 0, 10)
 	Logo.Size = UDim2.new(0, 120, 0, 120)
-	Logo.Image = "rbxassetid://13606562493"
+	Logo.Image = "rbxassetid://12362129605"
 local Tab = Instance.new("Frame")
 Tab.Name = "Tab"
 Tab.Parent = Main
@@ -279,6 +283,7 @@ Page.Parent = Main
 Page.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Page.Position = UDim2.new(0.255426834, 0, 0.086000003, 0)
 Page.Size = UDim2.new(0, 410, 0, 308)
+Page.BackgroundTransparency = 1.000
 --[[
 BtnStroke.Name = "BtnStroke"
             BtnStroke.Parent = Page
