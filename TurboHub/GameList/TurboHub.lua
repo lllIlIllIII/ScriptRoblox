@@ -660,8 +660,7 @@ UICorner_2.Parent = TextBtn
 
 Black.Name = "Black"
 Black.Parent = Button
-Black.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-Black.BackgroundTransparency = 1
+Black.BackgroundColor3 = Color3.fromRGB(0, 0, 0, 0)
 Black.BackgroundTransparency = 1.000
 Black.BorderSizePixel = 0
 Black.Position = UDim2.new(0, 1, 0, 1)
@@ -816,8 +815,7 @@ _G.Color = Color3.fromRGB(120, 0, 255)			local UICorner = Instance.new("UICorner
 
 			Button.Name = "Button"
 			Button.Parent = MainFramePage
-			Button.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-            Button.BackgroundTranspaency = 1
+			Button.BackgroundColor3 = Color3.fromRGB(0, 0, 0, 0)
 			Button.Position = UDim2.new(0, 1, 0, 1)
 			Button.Size = UDim2.new(0, 387, 0, 31)
 			Button.AutoButtonColor = false
@@ -934,8 +932,7 @@ local UIStroke = Instance.new("UIStroke")
 
 Dropdown.Name = "Dropdown"
 Dropdown.Parent = MainFramePage
-Dropdown.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-Dropdown.BackgroundTransparency = 1
+Dropdown.BackgroundColor3 = Color3.fromRGB(0, 0, 0, 0)
 Dropdown.ClipsDescendants = true
 Dropdown.Size = UDim2.new(0, 387, 0, 31)
 
@@ -1163,8 +1160,8 @@ end
             
                 SliderFrame_2.Name = "SliderFrame_2"
                 SliderFrame_2.Parent = SliderFrame
-                SliderFrame_2.BackgroundColor3 = Color3.fromRGB(0,0,0)
-                SliderFrame_2.BackgroundTransparency = 1
+                SliderFrame_2.BackgroundColor3 = Color3.fromRGB(0,0,0,0)
+                SliderFrame_2.BackgroundTransparency = 0
                 SliderFrame_2.BorderSizePixel = 0
                 SliderFrame_2.Position = UDim2.new(0, 1, 0, 1)
                 SliderFrame_2.Size = UDim2.new(0, 387, 0, 60)
