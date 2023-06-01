@@ -110,13 +110,14 @@ Main.Parent = RELZHUB
 Main.ClipsDescendants = true
 Main.AnchorPoint = Vector2.new(0.5,0.5)
 Main.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Main.BackgroundTransparency = 0
 Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 Main.Size = UDim2.new(0, 0, 0, 0)
 
 local BackgroundImage = Instance.new("ImageLabel")
 BackgroundImage.Name = "BackgroundImage"
 BackgroundImage.Parent = Main
-BackgroundImage.BackgroundTransparency = 0.8 -- Mengatur transparansi gambar latar belakang menjadi 1 (transparan)
+BackgroundImage.BackgroundTransparency = 1 -- Mengatur transparansi gambar latar belakang menjadi 1 (transparan)
 BackgroundImage.Position = UDim2.new(0, 0, 0, 0)
 BackgroundImage.Size = UDim2.new(1, 0, 1, 0)
 BackgroundImage.Image = "rbxassetid://13606928712"
