@@ -1,4 +1,4 @@
-function loading()
+local function loading()
 	local Loading = Instance.new("ScreenGui")
 	local Blur = Instance.new("Frame")
 	local Main = Instance.new("Frame")
@@ -64,8 +64,7 @@ local BtnStroke = Instance.new("UIStroke")
 BtnStroke.Name = "BtnStroke"
             BtnStroke.Parent = Load
             BtnStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-            BtnStroke.Color = Color3.fromRGB(255,130,0)
-            BtnStroke.LineJoinMode = Enum.LineJoinMode.Round
+            BtnStroke.Color = Color3.fromRGB(255, 130, 0)            BtnStroke.LineJoinMode = Enum.LineJoinMode.Round
         BtnStroke.Thickness = 2
         BtnStroke.Transparency = 0
         BtnStroke.Enabled = true
@@ -82,8 +81,7 @@ BtnStroke.Name = "BtnStroke"
 
 	BAR1.Name = "BAR1"
 	BAR1.Parent = Bar
-	BAR1.BackgroundColor3 = Color3.fromRGB(255,130,0)
-	BAR1.Size = UDim2.new(0, 0, 0, 25)
+	BAR1.BackgroundColor3 = Color3.fromRGB(255, 130, 0)	BAR1.Size = UDim2.new(0, 0, 0, 25)
 
 	UICorner_5.CornerRadius = UDim.new(0, 5)
 	UICorner_5.Parent = BAR1
@@ -95,8 +93,7 @@ BtnStroke.Name = "BtnStroke"
 	TextLabell.Size = UDim2.new(0, 55, 0, 55)
 	TextLabell.Font = Enum.Font.GothamSemibold
 	TextLabell.Text = "Turbo Hub"
-	TextLabell.TextColor3 = Color3.fromRGB(255,130,0)
-	TextLabell.TextSize = 50.000
+	TextLabell.TextColor3 = Color3.fromRGB(255, 130, 0)	TextLabell.TextSize = 50.000
 
 	TextLabel.Parent = Load
 	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -181,9 +178,6 @@ BtnStroke.Name = "BtnStroke"
 
 end
 
- -- Copy this Part at the Top of Hub
-local pandacore = loadstring(game:HttpGet("https://pandatechnology.xyz/service_api/PandaAuthCore.lua", true))() 
-local service_name  = "turbohub" -- Given by SkieHacker
 local function KeyTurbo()
 	local KeyTurbo = Instance.new("ScreenGui")
 	local Blur = Instance.new("Frame")
@@ -237,8 +231,7 @@ local BtnStroke = Instance.new("UIStroke")
 BtnStroke.Name = "BtnStroke"
             BtnStroke.Parent = KeyTurboParent
             BtnStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-            BtnStroke.Color = Color3.fromRGB(255,130,0)
-            BtnStroke.LineJoinMode = Enum.LineJoinMode.Round
+            BtnStroke.Color = Color3.fromRGB(255, 130, 0)            BtnStroke.LineJoinMode = Enum.LineJoinMode.Round
         BtnStroke.Thickness = 2
         BtnStroke.Transparency = 0
         BtnStroke.Enabled = true
@@ -262,21 +255,21 @@ KeyBox.TextSize = 16.000
 	TextLabell.Size = UDim2.new(0, 45, 0, 45)
 	TextLabell.Font = Enum.Font.GothamSemibold
 	TextLabell.Text = "Turbo Hub | Key System"
-	TextLabell.TextColor3 = Color3.fromRGB(255,130,0)
-	TextLabell.TextSize = 20.000
+	TextLabell.TextColor3 = Color3.fromRGB(255, 130, 0)	TextLabell.TextSize = 20.000
 
 local ImageButton = Instance.new("TextButton")
 ImageButton.Parent = KeyTurboParent
 ImageButton.Position = UDim2.new(0,170,0,90)
 ImageButton.Size = UDim2.new(0, 100, 0, 30)
-ImageButton.BackgroundColor3 = Color3.fromRGB(255, 130, 0)
-ImageButton.BackgroundTransparency = 0
+ImageButton.BackgroundColor3 = Color3.fromRGB(255, 130, 0)ImageButton.BackgroundTransparency = 0
 ImageButton.TextColor3 = Color3.fromRGB(0,0,0)
 ImageButton.Text = "GetKey"
 ImageButton.MouseButton1Down:connect(function()
 -- To Get Key, Just Copy  this
-setclipboard(GetLink(service_name))
-game:GetService("StarterGui"):SetCore("SendNotification", {Title = "TURBO HUB"; Text = "Link Copied!"; Icon = "rbxassetid://12362129605"; Duration = 3 })
+local userId = game.Players.LocalPlayer.UserId
+local hwid = tostring(userId)
+setclipboard("https://turbohub.xcodehoster.com/getkey/check1.php?hwid="..hwid)
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Turbo HUB"; Text = "Link Copied!"; Icon = "rbxassetid://12362129605"; Duration = 3 })
 end)
 	UICorner_5.CornerRadius = UDim.new(0, 30)
 	UICorner_5.Parent = ImageButton
@@ -285,28 +278,43 @@ local ImageButton1 = Instance.new("TextButton")
 ImageButton1.Parent = KeyTurboParent
 ImageButton1.Position = UDim2.new(0,280,0,90)
 ImageButton1.Size = UDim2.new(0, 100, 0, 30)
-ImageButton1.BackgroundColor3 = Color3.fromRGB(255, 130, 0)
-ImageButton1.BackgroundTransparency = 0
+ImageButton1.BackgroundColor3 = Color3.fromRGB(255, 130, 0)ImageButton1.BackgroundTransparency = 0
 ImageButton1.TextColor3 = Color3.fromRGB(0,0,0)
 ImageButton1.Text = "CheckKey"
 ImageButton1.MouseButton1Down:connect(function()
-local key = (KeyBox.Text)
-local uName = "officialraf12" or "123kycian" or "ArsyadAl" or "farelresek123"
-local GPLname = game.Players.LocalPlayer.Name
-if (ValidateKey(service_name, key) or KeyBox.Text == "SecretTurbo") then
-KeyTurboParent.Visible = false
-game:GetService("StarterGui"):SetCore("SendNotification", {Title = "TURBO HUB"; Text = "Correct Key!"; Icon = "rbxassetid://12362129605"; Duration = 3 })
-wait(3)
-    loading()
-elseif GPLname == uName and KeyBox.Text == "Giveaways" then
-KeyTurboParent.Visible = false
-game:GetService("StarterGui"):SetCore("SendNotification", {Title = "TURBO HUB"; Text = "Giveaways Key 🎉"; Icon = "rbxassetid://12362129605"; Duration = 3 })
-wait(3)
-    loading()
-else
-        game:GetService("StarterGui"):SetCore("SendNotification", {Title = "TURBO HUB"; Text = "Invalid Key!"; Icon = "rbxassetid://12362129605"; Duration = 3 })
-    end
+	local Data = loadstring(game:HttpGet("https://turbohub.xcodehoster.com/getkey/data.lua"))()
+	local myhwid = game.Players.LocalPlayer.UserId
+	local getHwid = tostring(myhwid)
+	
+	local validKey = false -- Tambahkan variabel untuk melacak keberhasilan pencocokan kunci
+	
+	for i, entry in ipairs(Data) do
+	  local DataKey = entry.key
+	  local DataHwid = entry.hwid
+	
+	  if DataKey == KeyBox.Text and DataHwid == getHwid or KeyBox.Text == 'SecretTurbo' then
+		validKey = true -- Setel variabel validKey menjadi true jika ada kecocokan kunci yang valid
+		break -- Hentikan perulangan setelah menemukan kecocokan
+	  end
+	end
+	
+	if validKey then
+	  KeyTurboParent.Visible = false
+	  game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Turbo HUB", Text = "Valid Key!", Icon = "rbxassetid://12362129605", Duration = 5})
+	  wait(2)
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/lllIlIllIII/ScriptRoblox/main/DynamicHub/LoaderGame.lua"))()
+	else
+	  game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Turbo HUB", Text = "Invalid Key!", Icon = "rbxassetid://12362129605", Duration = 5})
+	end
+	
+
+if KeyBox.Text == "" then
+  game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Turbo HUB", Text = "Enter Key!", Icon = "rbxassetid://12362129605", Duration = 5})
+
+end
+
 end)
+
 	UICorner_4.CornerRadius = UDim.new(0, 30)
 	UICorner_4.Parent = ImageButton1
 
@@ -314,20 +322,50 @@ local ImageButton2 = Instance.new("TextButton")
 ImageButton2.Parent = KeyTurboParent
 ImageButton2.Position = UDim2.new(0,185,0,130)
 ImageButton2.Size = UDim2.new(0, 180, 0, 30)
-ImageButton2.BackgroundColor3 = Color3.fromRGB(255, 130, 0)
-ImageButton2.BackgroundTransparency = 0
+ImageButton2.BackgroundColor3 = Color3.fromRGB(255, 130, 0)ImageButton2.BackgroundTransparency = 0
 ImageButton2.TextColor3 = Color3.fromRGB(0,0,0)
 ImageButton2.Text = "Copy Discord Link"
 ImageButton2.MouseButton1Down:connect(function()
 -- To Get Key, Just Copy  this
 setclipboard("https://discord.gg/3aG6P5hVyN")
-game:GetService("StarterGui"):SetCore("SendNotification", {Title = "TURBO HUB"; Text = "Discord Copied!"; Icon = "rbxassetid://12362129605"; Duration = 3 })
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Turbo HUB"; Text = "Discord Copied!"; Icon = "rbxassetid://12362129605"; Duration = 3 })
 end)
 	UICorner_2.CornerRadius = UDim.new(0, 30)
 	UICorner_2.Parent = ImageButton2
 end
 
-game:GetService("StarterGui"):SetCore("SendNotification", {Title = "TURBO HUB"; Text = "Executed!"; Icon = "rbxassetid://12362129605"; Duration = 3 })
-wait(1)
-KeyTurbo()
 
+ -- Copy this Part at the Top of Hub
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Turbo Hub"; Text = "Welcome To Turbo Hub"; Icon = "rbxassetid://12362129605"; Duration = 5 })
+ -- Given by SkieHacker
+wait(2)
+local function verifedData()
+	local VerifData = loadstring(game:HttpGet("https://turbohub.xcodehoster.com/getkey/data.lua"))()
+	local myhwid = game.Players.LocalPlayer.UserId
+	local getVerifHwid = tostring(myhwid)
+	
+	local checkHwid = false -- Tambahkan variabel untuk melacak keberhasilan pencocokan kunci
+	
+	for i, entry in ipairs(VerifData) do
+	  local VDataHwid = entry.hwid
+	
+	  if VDataHwid == getVerifHwid then
+		checkHwid = true -- Setel variabel validKey menjadi true jika ada kecocokan kunci yang valid
+		break -- Hentikan perulangan setelah menemukan kecocokan
+	  end
+	end
+	if checkHwid then
+	  game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Turbo HUB", Text = "Detected has done getkey", Icon = "rbxassetid://12362129605", Duration = 5})
+	  wait(2)
+	 loading()
+	else 
+		KeyTurbo()
+	end
+
+end
+
+verifedData()
