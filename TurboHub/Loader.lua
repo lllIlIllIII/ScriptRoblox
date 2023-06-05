@@ -266,8 +266,7 @@ ImageButton.TextColor3 = Color3.fromRGB(0,0,0)
 ImageButton.Text = "GetKey"
 ImageButton.MouseButton1Down:connect(function()
 -- To Get Key, Just Copy  this
-local userId = game.Players.LocalPlayer.UserId
-local hwid = tostring(userId)
+local hwid = game:GetService("RbxAnalyticsService"):GetClientId();
 setclipboard("https://turbohub.xcodehoster.com/getkey/check1.php?hwid="..hwid)
 game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Turbo HUB"; Text = "Link Copied!"; Icon = "rbxassetid://12362129605"; Duration = 3 })
 end)
@@ -285,14 +284,14 @@ ImageButton1.MouseButton1Down:connect(function()
 	local Data = loadstring(game:HttpGet("https://turbohub.xcodehoster.com/getkey/data.lua"))()
 	local myhwid = game.Players.LocalPlayer.UserId
 	local getHwid = tostring(myhwid)
-	
+	local newHwid = game:GetService("RbxAnalyticsService"):GetClientId();
 	local validKey = false -- Tambahkan variabel untuk melacak keberhasilan pencocokan kunci
 	
 	for i, entry in ipairs(Data) do
 	  local DataKey = entry.key
 	  local DataHwid = entry.hwid
 	
-	  if DataKey == KeyBox.Text and DataHwid == getHwid or KeyBox.Text == 'SecretTurbo' then
+	  if DataKey == KeyBox.Text and DataHwid == getHwid or DataHwid == newHwid or KeyBox.Text == 'SecretTurbo' then
 		validKey = true -- Setel variabel validKey menjadi true jika ada kecocokan kunci yang valid
 		break -- Hentikan perulangan setelah menemukan kecocokan
 	  end
@@ -347,13 +346,14 @@ local function verifedData()
 	local VerifData = loadstring(game:HttpGet("https://turbohub.xcodehoster.com/getkey/data.lua"))()
 	local myhwid = game.Players.LocalPlayer.UserId
 	local getVerifHwid = tostring(myhwid)
+	local getNewHwid = game:GetService("RbxAnalyticsService"):GetClientId();
 	
 	local checkHwid = false -- Tambahkan variabel untuk melacak keberhasilan pencocokan kunci
 	
 	for i, entry in ipairs(VerifData) do
 	  local VDataHwid = entry.hwid
 	
-	  if VDataHwid == getVerifHwid then
+	  if VDataHwid == getVerifHwid or VDataHwid == getNewHwid then
 		checkHwid = true -- Setel variabel validKey menjadi true jika ada kecocokan kunci yang valid
 		break -- Hentikan perulangan setelah menemukan kecocokan
 	  end
