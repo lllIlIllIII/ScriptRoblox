@@ -12,6 +12,123 @@ local Shop = Library:Tab("Shops","6031265976")
 local Misc = Library:Tab("Misc","11447063791")
 local RaceV4 = Library:Tab("RaceV4","11446900930")
 
+
+
+  Misc:Toggle("Remove Attack",true,function(value)
+         _G.RemoveAnimation = value
+	end)
+
+		local Client = game.Players.LocalPlayer
+		local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
+		local STOPRL = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+		if not shared.orl then
+		shared.orl = STOPRL.wrapAttackAnimationAsync
+		end
+		if not shared.cpc then
+		shared.cpc = STOP.play 
+		end
+		spawn(function()
+		game:GetService("RunService").Stepped:Connect(function()
+			STOPRL.wrapAttackAnimationAsync = function(a,b,c,d,func)
+				local Hits = STOPRL.getBladeHits(b,c,d)
+				if Hits then
+					if _G.RemoveAnimation or _G.AutoKaitan or _G.Auto_Farm_Level then
+					       if _G.AutoKaitan or _G.Auto_Farm_Level then
+						STOP.play = function() end
+						a:Play(0.01,0.01,0.01)
+						func(Hits)
+						STOP.play = shared.cpc
+						wait(a.length * 0.5)
+						a:Stop()
+					else
+						func(Hits)
+						STOP.play = shared.cpc
+						wait(a.length * 0.5)
+						a:Stop()
+					end
+				end
+				end
+			end
+		end)
+		end)
+		
+    Misc:Toggle("Remove Sound",true,function(value)
+        _G.Remove_Effect = value
+	end)
+
+spawn(function()
+    game:GetService('RunService').Stepped:Connect(function()
+        if _G.Remove_Effect or _G.AutoKaitan then
+            for i, v in pairs(game.Workspace["_WorldOrigin"]:GetChildren()) do
+                if v.Name == "CurvedRing" or v.Name == "SwordSlash" or v.Name == "Sounds" or v.Name == "SlashHit" or v.Name == "DamageCounter" then--or v.Name == "SlashHit"
+                    v:Destroy() 
+                end
+            end
+        end
+    end)
+end)
+
+
+Misc:Toggle("Remove Death Effect",true,function(value)
+     _G.Remove_EffectDeath = value
+    end)
+
+spawn(function()
+    game:GetService('RunService').Stepped:Connect(function()
+        if _G.Remove_EffectDeath or _G.AutoKaitan then
+            for i, v in pairs(game:GetService("ReplicatedStorage").Effect.Container:GetChildren()) do
+                if v.Name == "Death" then
+                    v:Destroy() 
+                end
+            end
+        end
+    end)
+end)
+
+Misc:Toggle("Disabled Damage",true,function(value)
+        DisabledDamage()
+        _G.DisabledDamage = value
+    end)
+
+-- [require module]
+
+local CombatFramework = require(game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("CombatFramework"))
+local CombatFrameworkR = getupvalues(CombatFramework)[2]
+local RigController = require(game:GetService("Players")["LocalPlayer"].PlayerScripts.CombatFramework.RigController)
+local RigControllerR = getupvalues(RigController)[2]
+local realbhit = require(game.ReplicatedStorage.CombatFramework.RigLib)
+local cooldownfastattack = tick()
+
+-- [Disabled Damage Interface]
+function DisabledDamage()
+	task.spawn(function()
+		while wait() do
+			pcall(function()
+				if _G.DisabledDamage then
+					game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = false
+				else
+					game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = true
+				end
+			end)
+		end
+	end)
+end
+spawn(function()
+    game:GetService('RunService').Stepped:Connect(function()
+game:GetService("ReplicatedStorage").Notification:Destroy()
+game:GetService("ReplicatedStorage").Effect.Container.LevelUp:Destroy()
+game:GetService("ReplicatedStorage").Util.Sound:Destroy()
+game:GetService("ReplicatedStorage").Util.Sound.Storage.Other:FindFirstChild("LevelUp_Proxy"):Destroy()
+game:GetService("ReplicatedStorage").Util.Sound.Storage.Other:FindFirstChild("LevelUp"):Destroy()
+	game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
+            for i, v in pairs(game.Workspace["_WorldOrigin"]:GetChildren()) do
+                if v.Name == "CurvedRing" or v.Name == "SwordSlash" or v.Name == "Sounds" or v.Name == "SlashHit" or v.Name == "DamageCounter" then--or v.Name == "SlashHit"
+                    v:Destroy() 
+                end
+            end
+    end)
+end)
+
 Main:Seperator("Server")
 
 Time = Main:Label("Executer Time")
@@ -90,7 +207,7 @@ local bringfrec = 350
 local posX = 0
 local posY = 30
 local posZ = 0
-local TweenSpeed = 350
+local TweenSpeed = 550
 local WeaponList = {
   "Melee","Devil Fruit","Sword","Gun"
 }
@@ -146,7 +263,7 @@ spawn(function()
 end)
 
 --// Fast Attack
-local AttackList = {"Slow", "Default", "Fast", "Super Fast (Risk)"}
+local AttackList = {"MOBILE", "PC"}
 _G.FastAttackDelay = "Default"
 Main:Dropdown("Fast Attack Mode", AttackList,function(adl)
     _G.FastAttackDelay = adl
@@ -155,13 +272,9 @@ spawn(function()
     while wait(.1) do
         if _G.FastAttackDelay then
             pcall(function()
-                if _G.FastAttackDelay == "Slow" then
-                    _G.FastAttackDelay = 0.9
-                elseif _G.FastAttackDelay == "Default" then
-                    _G.FastAttackDelay = 0.5
-                elseif _G.FastAttackDelay == "Fast" then
-                    _G.FastAttackDelay = 0.3
-                elseif _G.FastAttackDelay == "Super Fast (Risk)" then
+                if _G.FastAttackDelay == "MOBILE" then
+                    _G.FastAttackDelay = 0.2
+                elseif _G.FastAttackDelay == "PC" then
                     _G.FastAttackDelay = 0.1
                 end
             end)
