@@ -203,7 +203,7 @@ end)
 Main:Seperator("Config")
 
 --// Setting Farm
-local bringfrec = 350
+local bringfrec = 250
 local posX = 0
 local posY = 30
 local posZ = 0
