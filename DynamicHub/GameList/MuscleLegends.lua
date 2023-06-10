@@ -304,9 +304,15 @@ end
 --     end
 -- end
 AutoFarm:Seperator("Rocks")
-AutoFarm:Dropdown("Select Rocks", Rocks, function(String)
-    Rocks = String
-end)
+Rocks = {}
+for i, v in pairs(game:GetService("Workspace").machinesFolder:GetChildren()) do
+    if v:FindFirstChild("Rock") then
+        table.insert(Rocks, v.Name)
+    end
+end
+ AutoFarm:Dropdown("Select Rocks", Rocks, function(String)
+        Rocks = String
+    end)
 AutoFarm:Toggle("Auto Durability", _G.WorkOut1, function(State)
     _G.WorkOut1 = State
     game:GetService("RunService").Stepped:connect(
@@ -336,12 +342,6 @@ AutoFarm:Toggle("Auto Durability", _G.WorkOut1, function(State)
     end
     end)
     end)
-    Rocks = {}
-    for i, v in pairs(game:GetService("Workspace").machinesFolder:GetChildren()) do
-        if v:FindFirstChild("Rock") then
-            table.insert(Rocks, v.Name)
-        end
-    end
    
 AutoFarm:Seperator("FrostGym")
 local thisFarmFrost = {
