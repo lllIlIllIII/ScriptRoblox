@@ -1,4 +1,4 @@
-local Update = loadstring(Game:HttpGet"https://raw.githubusercontent.com/lllIlIllIII/ScriptRoblox/main/TurboHub/Library.lua")()
+local Update = loadstring(Game:HttpGet"https://raw.githubusercontent.com/lllIlIllIII/ScriptRoblox/main/DynamicHub/DynamicHubLibrary.lua")()
 local win = Update:Window("Muscle Legends")
 local Main = win:Tab("Main", "rbxassetid://6026568198")
 local AutoFarm = win:Tab("AutoFarm", "http://www.roblox.com/asset/?id=7040410130")
@@ -16,7 +16,7 @@ player.Idled:connect(function()
 		game.VirtualUser:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
 	end
 end)
-Main:Seperator("Turbo Hub")
+Main:Seperator("Dynamic Hub")
 Main:Label("User : "..game.Players.LocalPlayer.DisplayName)
 Time = Main:Label("Executer Time")
 
