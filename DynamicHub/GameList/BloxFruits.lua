@@ -6436,7 +6436,7 @@ end)
 
 
     
-    
+ --[[   
     Stats:Seperator("Fake Stats")
     
     Stats:Toggle("Enabled Fake",true,function(value)
@@ -6501,6 +6501,9 @@ end)
             game:GetService("Players")["LocalPlayer"].leaderstats["Bounty/Honor"].Value = tonumber(value)
         end
     end)
+ ]]--
+
+
 
 Combat:Seperator("🤺 Players Combat 🤺")
 
