@@ -2,6 +2,7 @@ local Update = loadstring(Game:HttpGet"https://raw.githubusercontent.com/lllIlIl
 local Library = Update:Window("DynamicHub",Enum.KeyCode.RightControl);
 
 local Main = Library:Tab("Main","rbxassetid://11446825283")
+local Set = Library:Tab("Setting","rbxassetid://11446835336")
 local Farm = Library:Tab("OtherFarm","rbxassetid://9260732790")
 local Stats = Library:Tab("Stats","rbxassetid://11447069304")
 local Combat = Library:Tab("Combats","rbxassetid://11446900930")
@@ -12,9 +13,32 @@ local Shop = Library:Tab("Shops","rbxassetid://6031265976")
 local Misc = Library:Tab("Misc","rbxassetid://11447063791")
 local RaceV4 = Library:Tab("RaceV4","rbxassetid://11446900930")
 
+function CheckAntiCheatBypass()
+    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+        if v:IsA("LocalScript") then
+            if v.Name == "General" or v.Name == "Shiftlock"  or v.Name == "FallDamage" or v.Name == "4444" or v.Name == "CamBob" or v.Name == "JumpCD" or v.Name == "Looking" or v.Name == "Run" then
+                v:Destroy()
+            end
+        end
+     end
+     for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerScripts:GetDescendants()) do
+        if v:IsA("LocalScript") then
+            if v.Name == "RobloxMotor6DBugFix" or v.Name == "Clans"  or v.Name == "Codes" or v.Name == "CustomForceField" or v.Name == "MenuBloodSp"  or v.Name == "PlayerList" then
+                v:Destroy()
+            end
+        end
+     end
+    end
 
+CheckAntiCheatBypass()
 
-  Misc:Toggle("Remove Attack",true,function(value)
+Set:Toggle("AntiCheat Bypass✅", true, function(value)
+  _G.SafeFarm = value
+CheckAntiCheatBypass()
+end)
+
+Set:Seperator("Settings")
+Set:Toggle("Remove Attack",true,function(value)
          _G.RemoveAnimation = value
 	end)
 
@@ -52,7 +76,7 @@ local RaceV4 = Library:Tab("RaceV4","rbxassetid://11446900930")
 		end)
 		end)
 		
-    Misc:Toggle("Remove Sound",true,function(value)
+    Set:Toggle("Remove Sound",true,function(value)
         _G.Remove_Effect = value
 	end)
 
@@ -69,7 +93,7 @@ spawn(function()
 end)
 
 
-Misc:Toggle("Remove Death Effect",true,function(value)
+Set:Toggle("Remove Death Effect",true,function(value)
      _G.Remove_EffectDeath = value
     end)
 
@@ -85,7 +109,7 @@ spawn(function()
     end)
 end)
 
-Misc:Toggle("Disabled Damage",true,function(value)
+Set:Toggle("Disabled Damage",true,function(value)
         DisabledDamage()
         _G.DisabledDamage = value
     end)
@@ -262,7 +286,7 @@ end)
 
 --// Fast Attack
 local AttackList = {"MOBILE", "PC"}
-_G.FastAttackDelay = "Default"
+_G.FastAttackDelay = "PC"
 Main:Dropdown("Fast Attack Mode", AttackList,function(adl)
     _G.FastAttackDelay = adl
 end)
@@ -281,7 +305,7 @@ spawn(function()
 end)
 
 FarmTable = {
-"Above",
+"Upper",
 "Bellow",
 "Behind"
 }
@@ -291,12 +315,12 @@ Main:Dropdown("Select Farm Type", FarmTable,function(value)
 end)
 spawn(function()
     while wait(.1) do
-        if AutoFarmType == "Above" then
-            Farm_Mode = CFrame.new(0,DisFarm,0) * CFrame.Angles(math.rad(-90),0,0)
+        if AutoFarmType == "Upper" then
+            Farm_Mode = CFrame.new(0,_G.DisFarm,0) * CFrame.Angles(math.rad(-90),0,0)
         elseif AutoFarmType == "Bellow" then
-            Farm_Mode = CFrame.new(0,DisFarm,0) * CFrame.Angles(math.rad(90),0,0)
+            Farm_Mode = CFrame.new(0,_G.DisFarm,0) * CFrame.Angles(math.rad(90),0,0)
         elseif AutoFarmType == "Behind" then
-            Farm_Mode = CFrame.new(0,0,DisFarm) * CFrame.Angles(math.rad(0),0,0)
+            Farm_Mode = CFrame.new(0,0,_G.DisFarm) * CFrame.Angles(math.rad(0),0,0)
         end
     end
 end)
@@ -326,25 +350,19 @@ task.wait()
 end
 end)
 
-if not game:GetService("UserInputService").TouchEnabled and not game:GetService("UserInputService").KeyboardEnabled == false then
-DisFarm = 30
-Main:Slider("Farm Distance",1,100,30,function(value)
- DisFarm = value
+_G.DisFarm = 30
+Set:Slider("Farm Distance",1,100,30,function(value)
+ _G.DisFarm = value
  end)
-else
- DisFarm = 30
-Main:Slider("Farm Distance",1,100,30,function(value)
- DisFarm = value
- end)
-end
 
 
-Main:Toggle('Bypass TeTeleport', BypassTP, function(vale)
+
+Set:Toggle('Bypass TeTeleport', BypassTP, function(vale)
   BypassTP = vale
 end)
 
 _G.FastAttack = true
-Main:Toggle('Fast Attack', _G.FastAttack, function(famobile)
+Set:Toggle('Fast Attack', _G.FastAttack, function(famobile)
     _G.FastAttack = famobile
 end)
 
@@ -407,7 +425,7 @@ end)
 local CamShake = require(game.ReplicatedStorage.Util.CameraShaker)
 CamShake:Stop()
 
-Main:Toggle("Bring Mob", true, function(Value)
+Set:Toggle("Bring Mob", true, function(Value)
   BringMobs = Value
   end)
 
@@ -459,7 +477,7 @@ return false
 end
 end
 
-Main:Toggle("Auto Set Spawn Point",true, function(setspawnfunc)
+Set:Toggle("Auto Set Spawn Point",true, function(setspawnfunc)
   AutoSetSpawn = setspawnfunc
   end)
 spawn(function()
@@ -470,18 +488,6 @@ spawn(function()
   end
   end)
 
-Main:Toggle("Auto Activated Buso Haki",true, function(busohakifunc)
-  BusoHaki = busohakifunc
-  end)
-spawn(function()
-  while wait(.1) do
-  if BusoHaki then
-  if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
-  game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
-  end
-  end
-  end
-end)
 
 ------ Main Farm
 
@@ -1819,30 +1825,7 @@ spawn(function()
   end
   end
 end)
-function CheckAntiCheatBypass()
-    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-        if v:IsA("LocalScript") then
-            if v.Name == "General" or v.Name == "Shiftlock"  or v.Name == "FallDamage" or v.Name == "4444" or v.Name == "CamBob" or v.Name == "JumpCD" or v.Name == "Looking" or v.Name == "Run" then
-                v:Destroy()
-            end
-        end
-     end
-     for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerScripts:GetDescendants()) do
-        if v:IsA("LocalScript") then
-            if v.Name == "RobloxMotor6DBugFix" or v.Name == "Clans"  or v.Name == "Codes" or v.Name == "CustomForceField" or v.Name == "MenuBloodSp"  or v.Name == "PlayerList" then
-                v:Destroy()
-            end
-        end
-     end
-    end
 
-CheckAntiCheatBypass()
-
-Main:Toggle("Anti Cheat Bypass(â—Do Not Turn Offâ—)", true, function(value)
-  _G.SafeFarm = value
-CheckAntiCheatBypass()
-  Notification("Anti Cheat Bypass Activated âœ…")
-end)
 
 Main:Dropdown("Select Mode Farm", {
  "Level Farm","No Quest","Near Farm Mode"
@@ -3423,6 +3406,18 @@ Main:Toggle('Auto Farm Observation', false, function(autokenf)
     AutoFarmKen = autokenf
     CancelTween(AutoFarmKen)
 end)
+Main:Toggle("Auto Activated Buso Haki",true, function(busohakifunc)
+  BusoHaki = busohakifunc
+  end)
+spawn(function()
+  while wait(.1) do
+  if BusoHaki then
+  if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
+  game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
+  end
+  end
+  end
+end)
 spawn(function()
     while task.wait() do
         if AutoFarmKen then
@@ -4071,7 +4066,7 @@ spawn(function()
     elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 86 then
     CakePrinceStatus:Set("Killed : "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,39)..' / 500')
     else
-      CakePrinceStatus:Set("Cake Prince Has Been Spawned âœ…")
+      CakePrinceStatus:Set("Cake Prince Has Been Spawned ✅")
     end
     end)
   end
@@ -4167,7 +4162,7 @@ local EliteProgress = Farm:Label("")
                 if game:GetService("ReplicatedStorage"):FindFirstChild("Diablo [Lv. 1750]") or game:GetService("ReplicatedStorage"):FindFirstChild("Deandre [Lv. 1750]") or game:GetService("ReplicatedStorage"):FindFirstChild("Urban [Lv. 1750]") or game:GetService("Workspace").Enemies:FindFirstChild("Diablo [Lv. 1750]") or game:GetService("Workspace").Enemies:FindFirstChild("Deandre [Lv. 1750]") or game:GetService("Workspace").Enemies:FindFirstChild("Urban [Lv. 1750]") then
                     BosstElite:Set("Elite Boss : Spawned.")
                 else
-                    BosstElite:Set("Elite Hunter Has Been Spawned âœ…")
+                    BosstElite:Set("Elite Hunter Has Been Spawned ✅")
                 end
             end)
         end
@@ -4290,9 +4285,9 @@ Farm:Seperator(" Buddy Sword ")
 local queen = Farm:Label("")
 
 if game:GetService("Workspace").Enemies:FindFirstChild("Cake Queen [Lv. 2175] [Boss]") then
-queen:Set("Status : Cake Queen Has Been Spawn âœ…")
+queen:Set("Status : Cake Queen Has Been Spawn ✅")
 else
-queen:Set("Status : Cake Queen Not Spawn âŒ")
+queen:Set("Status : Cake Queen Not Spawn ❌")
 end
 
 Farm:Toggle('Auto Buddy Sword', AutoBuddySword, function(autobuddyswordfunc)
@@ -4345,9 +4340,9 @@ Farm:Seperator(" Pole Sword ")
 
 local pole = Farm:Label("")
 if game:GetService("Workspace").Enemies:FindFirstChild("Thunder God [Lv. 575] [Boss]") then
-pole:Set("Status : Thunder God Has Been Spawn âœ…")
+pole:Set("Status : Thunder God Has Been Spawn ✅")
 else
-pole:Set("Status : Thunder God Not Spawn âŒ")
+pole:Set("Status : Thunder God Not Spawn ❌")
 end
 
 Farm:Toggle('Auto Pole', AutoPole, function(autopolefunc)
@@ -4436,9 +4431,9 @@ Farm:Seperator("Hallow Sycthe")
 
 local hallow = Farm:Label("")
 if game:GetService("Workspace").Enemies:FindFirstChild("Soul Reaper [Lv. 2100] [Raid Boss]") then
-hallow:Set("Status : Soul Reaper Boss Has Been Spawn âœ…")
+hallow:Set("Status : Soul Reaper Boss Has Been Spawn ✅")
 else
-hallow:Set("Status : Soul Reaper Boss Not Spawn âŒ")
+hallow:Set("Status : Soul Reaper Boss Not Spawn ❌")
 end
 Farm:Toggle('Auto Hallow Sycthe', AutoHallowSycthe, function(autohallowsycthefunc)
     AutoHallowSycthe = autohallowsycthefunc
@@ -4498,9 +4493,9 @@ end)
 Farm:Seperator(" Cavander Sword ")
 local cavander = Farm:Label("")
 if game:GetService("Workspace").Enemies:FindFirstChild("Beautiful Pirate [Lv. 1950] [Boss]") then
-cavander:Set("Status : Beautiful Pirate Has Been Spawn âœ…")
+cavander:Set("Status : Beautiful Pirate Has Been Spawn ✅")
 else
-cavander:Set("Status : Beautiful Pirate Not Spawn âŒ")
+cavander:Set("Status : Beautiful Pirate Not Spawn ❌")
 end
 Farm:Toggle('Auto Cavander', AutoCavander, function(autocavanderfunc)
     AutoCavander = autocavanderfunc
@@ -4742,9 +4737,9 @@ end)
 
 Farm:Seperator("Dual Cursed Katana")
 
-local Yama = Farm:Label("âŒ : Yama")
+local Yama = Farm:Label("❌ : Yama")
 
-local Tushita = Farm:Label("âŒ : Tushita")
+local Tushita = Farm:Label("❌ : Tushita")
 
 
 spawn(function()
@@ -4752,10 +4747,10 @@ spawn(function()
         pcall(function()
             for i,v in pairs(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventoryWeapons")) do
                 if v.Name == "Yama" then
-                    Yama:Set("âœ… : Yama")
+                    Yama:Set("✅ : Yama")
                 end
                 if v.Name == "Tushita" then
-                    Tushita:Set("âœ… : Tushita")
+                    Tushita:Set("✅ : Tushita")
                  end
             end
         end)
@@ -5341,9 +5336,9 @@ Farm:Seperator("Serpent Bow")
 
 local serpent = Farm:Label("")
 if game.Workspace.Enemies:FindFirstChild("Island Empress [Lv. 1675] [Boss]") then
-serpent:Set("Status : Island Impress Boss Has Been Spawn âœ…")
+serpent:Set("Status : Island Impress Boss Has Been Spawn ✅")
 else
-serpent:Set("Status : Island Impress Boss Not Spawn âŒ")
+serpent:Set("Status : Island Impress Boss Not Spawn ❌")
 end
 Farm:Toggle('Auto Serpent Bow', false, function(asbgh)
     Auto_Serpent_Bow = asbgh
@@ -6506,7 +6501,7 @@ end)
         end
     end)
 
-Combat:Seperator("ðŸ¤º Players Combat ðŸ¤º")
+Combat:Seperator("🤺 Players Combat 🤺")
 PlayerList = {}
 
 for i,v in pairs(game.Players:GetChildren()) do  
@@ -6731,7 +6726,7 @@ spawn(function()
     end)
 end)
 
-Combat:Seperator("ðŸ“ˆ Player Status ðŸ“ˆ")
+Combat:Seperator("📈 Player Status 📈")
 
 Combat:Label("Name : "..game.Players.LocalPlayer.Name)
 
@@ -6758,58 +6753,58 @@ Combat:Label("Bounty : "..game:GetService("Players").LocalPlayer.leaderstats["Bo
 
 Combat:Seperator(" Sword ")
 
-local Saber = Combat:Label("âŒ : Saber")
-local Rengoku = Combat:Label("âŒ : Rengoku")
-local Midnight_Blade = Combat:Label("âŒ : Midnight Blade")
-local Dragon_Trident = Combat:Label("âŒ : Dragon Trident")
-local Yama = Combat:Label("âŒ : Yama")
-local Buddy_Sword = Combat:Label("âŒ : Buddy Sword")
-local Canvander = Combat:Label("âŒ : Canvander")
-local Twin_Hooks = Combat:Label("âŒ : Twin Hooks")
-local Spikey_Trident = Combat:Label("âŒ : Spikey Trident")
-local Hallow_Scythe = Combat:Label("âŒ : Hallow Scythe")
-local Dark_Dagger = Combat:Label("âŒ : Dark Dagger")
-local Tushita = Combat:Label("âŒ : Tushita")
+local Saber = Combat:Label("❌ : Saber")
+local Rengoku = Combat:Label("❌ : Rengoku")
+local Midnight_Blade = Combat:Label("❌ : Midnight Blade")
+local Dragon_Trident = Combat:Label("❌ : Dragon Trident")
+local Yama = Combat:Label("❌ : Yama")
+local Buddy_Sword = Combat:Label("❌ : Buddy Sword")
+local Canvander = Combat:Label("❌ : Canvander")
+local Twin_Hooks = Combat:Label("❌ : Twin Hooks")
+local Spikey_Trident = Combat:Label("❌ : Spikey Trident")
+local Hallow_Scythe = Combat:Label("❌ : Hallow Scythe")
+local Dark_Dagger = Combat:Label("❌ : Dark Dagger")
+local Tushita = Combat:Label("❌ : Tushita")
 
 spawn(function()
     while task.wait() do
         pcall(function()
             for i,v in pairs(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventoryWeapons")) do
                 if v.Name == "Saber" then
-                    Saber:Set("âœ… : Saber")
+                    Saber:Set("✅ : Saber")
                 end
                 if v.Name == "Rengoku" then
-                    Rengoku:Set("âœ… : Rengoku")
+                    Rengoku:Set("✅ : Rengoku")
                 end
                 if v.Name == "Midnight Blade" then
-                    Midnight_Blade:Set("âœ… : Midnight Blade")
+                    Midnight_Blade:Set("✅ : Midnight Blade")
                 end
                 if v.Name == "Dragon Trident" then
-                    Dragon_Trident:Set("âœ… : Dragon Trident")
+                    Dragon_Trident:Set("✅ : Dragon Trident")
                 end
                 if v.Name == "Yama" then
-                    Yama:Set("âœ… : Yama")
+                    Yama:Set("✅ : Yama")
                 end
                 if v.Name == "Buddy Sword" then
-                    Buddy_Sword:Set("âœ… : Buddy Sword")
+                    Buddy_Sword:Set("✅ : Buddy Sword")
                 end
                 if v.Name == "Canvander" then
-                    Canvander:Set("âœ… : Canvander")
+                    Canvander:Set("✅ : Canvander")
                 end
                 if v.Name == "Twin Hooks" then
-                    Twin_Hooks:Set("âœ… : Twin Hooks")
+                    Twin_Hooks:Set("✅ : Twin Hooks")
                 end
                 if v.Name == "Spikey Trident" then
-                    Spikey_Trident:Set("âœ… : Spikey Trident")
+                    Spikey_Trident:Set("✅ : Spikey Trident")
                 end
                 if v.Name == "Hallow Scythe" then
-                    Hallow_Scythe:Set("âœ… : Hallow Scythe")
+                    Hallow_Scythe:Set("✅ : Hallow Scythe")
                 end
                 if v.Name == "Dark Dagger" then
-                    Dark_Dagger:Set("âœ… : Dark Dagger")
+                    Dark_Dagger:Set("✅ : Dark Dagger")
                 end
                 if v.Name == "Tushita" then
-                    Tushita:Set("âœ… : Tushita")
+                    Tushita:Set("✅ : Tushita")
                  end
             end
         end)
@@ -6818,116 +6813,116 @@ end)
 
 Combat:Seperator(" Quest ")
 
-local Bartilo_Quest = Combat:Label("âŒ : Bartilo Quest")
-local Don_Swan_Quest = Combat:Label("âŒ : Don Swan Quest")
-local Kill_Don_Swan = Combat:Label("âŒ : Kill Don Swan")
+local Bartilo_Quest = Combat:Label("❌ : Bartilo Quest")
+local Don_Swan_Quest = Combat:Label("❌ : Don Swan Quest")
+local Kill_Don_Swan = Combat:Label("❌ : Kill Don Swan")
 
 spawn(function()
     while task.wait() do
         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BartiloQuestProgress","Bartilo") == 3 then
-            Bartilo_Quest:Set("âœ… : Bartilo Quest")
+            Bartilo_Quest:Set("✅ : Bartilo Quest")
         end
 
         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("GetUnlockables").FlamingoAccess == nil then
             --Nothing
         else
-            Don_Swan_Quest:Set("âœ… : Don Swan Quest")
+            Don_Swan_Quest:Set("✅ : Don Swan Quest")
         end
 
         if game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("ZQuestProgress", "General") == 1 then
-            Kill_Don_Swan:Set("âœ… : Kill Don Swan")
+            Kill_Don_Swan:Set("✅ : Kill Don Swan")
         end
     end
 end)
 
 Combat:Seperator(" Sword Legendary ")
 
-local Shisui = Combat:Label("âŒ : Shisui")
-local Saddi = Combat:Label("âŒ : Saddi")
-local Wando = Combat:Label("âŒ : Wando")
-local True_Triple_Katana = Combat:Label("âŒ : True Triple Katana")
+local Shisui = Combat:Label("❌ : Shisui")
+local Saddi = Combat:Label("❌ : Saddi")
+local Wando = Combat:Label("❌ : Wando")
+local True_Triple_Katana = Combat:Label("❌ : True Triple Katana")
 
 spawn(function()
     while task.wait() do
         pcall(function()
             for i,v in pairs(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventoryWeapons")) do
                 if v.Name == "Shisui" then
-                    Shisui:Set("âœ… : Shisui")
+                    Shisui:Set("✅ : Shisui")
                 end
                 if v.Name == "Saddi" then
-                    Saddi:Set("âœ… : Saddi")
+                    Saddi:Set("✅ : Saddi")
                 end
                 if v.Name == "Wando" then
-                    Wando:Set("âœ… : Wando")
+                    Wando:Set("✅ : Wando")
                 end
                 if v.Name == "True Triple Katana" then
-                    True_Triple_Katana:Set("âœ… : True Triple Katana")
+                    True_Triple_Katana:Set("✅ : True Triple Katana")
                 end
             end
         end)
     end
 end)
 
-Combat:Seperator("ðŸ”ª Melee ðŸ”ª")
+Combat:Seperator("🔪 Melee 🔪")
 
-local Superhuman = Combat:Label("âŒ : Superhuman")
-local Death_Step = Combat:Label("âŒ : Death Step")
-local Sharkman_Karate = Combat:Label("âŒ : Sharkman Karate")
-local Electric_Claw = Combat:Label("âŒ : Electric Claw")
-local Dragon_Talon = Combat:Label("âŒ : Dragon Talon")
-local God_Human = Combat:Label("âŒ : God Human")
+local Superhuman = Combat:Label("❌ : Superhuman")
+local Death_Step = Combat:Label("❌ : Death Step")
+local Sharkman_Karate = Combat:Label("❌ : Sharkman Karate")
+local Electric_Claw = Combat:Label("❌ : Electric Claw")
+local Dragon_Talon = Combat:Label("❌ : Dragon Talon")
+local God_Human = Combat:Label("❌ : God Human")
 
 spawn(function()
     while task.wait() do
         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman",true) == 1 then
-            Superhuman:Set("âœ… : Superhuman")
+            Superhuman:Set("✅ : Superhuman")
         end
         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep",true) == 1 then
-            Death_Step:Set("âœ… : Death Step")
+            Death_Step:Set("✅ : Death Step")
         end
         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true) == 1 then
-            Sharkman_Karate:Set("âœ… : Sharkman Karate")
+            Sharkman_Karate:Set("✅ : Sharkman Karate")
         end
         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw",true) == 1 then
-            Electric_Claw:Set("âœ… : Electric Claw")
+            Electric_Claw:Set("✅ : Electric Claw")
         end
         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon",true) == 1 then
-            Dragon_Talon:Set("âœ… : Dragon Talon")
+            Dragon_Talon:Set("✅ : Dragon Talon")
         end
     end
 end)
 
-Combat:Seperator("ðŸ”« Gun ðŸ”«")
+Combat:Seperator("🔫 Gun 🔫")
 
-local Kabu_cha = Combat:Label("âŒ : Kabucha")
-local Acidum_Rifle = Combat:Label("âŒ : Acidum Rifle")
-local Bizarre_Rifle = Combat:Label("âŒ : Bizarre Rifle")
+local Kabu_cha = Combat:Label("❌ : Kabucha")
+local Acidum_Rifle = Combat:Label("❌ : Acidum Rifle")
+local Bizarre_Rifle = Combat:Label("❌ : Bizarre Rifle")
 
 spawn(function()
     while task.wait() do
         pcall(function()
             for i,v in pairs(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventoryWeapons")) do
                 if v.Name == "Kabucha" then
-                    Kabu_cha:Set("âœ… : Kabucha")
+                    Kabu_cha:Set("✅ : Kabucha")
                 end
                 if v.Name == "Acidum Rifle" then
-                    Acidum_Rifle:Set("âœ… : Acidum Rifle")
+                    Acidum_Rifle:Set("✅ : Acidum Rifle")
                 end
                 if v.Name == "Bizarre Rifle" then
-                    Bizarre_Rifle:Set("âœ… : Bizarre Rifle")
+                    Bizarre_Rifle:Set("✅ : Bizarre Rifle")
                 end
             end
         end)
     end
 end)
 
-Combat:Seperator("âš™ï¸ Accessory âš™ï¸")
+Combat:Seperator("⚙️ Accessory ⚙️")
 
-local Dark_Coat = Combat:Label("âŒ : Dark Coat")
-local Ghoul_Mask = Combat:Label("âŒ : Ghoul Mask")
-local Swan_Glass = Combat:Label("âŒ : Swan Glass")
-local Pale_Scarf = Combat:Label("âŒ : Pale Scarf")
-local Valkyrie_Helm = Combat:Label("âŒ : Valkyrie Helm")
+local Dark_Coat = Combat:Label("❌ : Dark Coat")
+local Ghoul_Mask = Combat:Label("❌ : Ghoul Mask")
+local Swan_Glass = Combat:Label("❌ : Swan Glass")
+local Pale_Scarf = Combat:Label("❌ : Pale Scarf")
+local Valkyrie_Helm = Combat:Label("❌ : Valkyrie Helm")
 
 
 spawn(function()
@@ -6935,19 +6930,19 @@ spawn(function()
         pcall(function()
             for i,v in pairs(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventoryWeapons")) do
                 if v.Name == "Saber" then
-                    Dark_Coat:Set("âœ… : Dark Coat")
+                    Dark_Coat:Set("✅ : Dark Coat")
                 end
                 if v.Name == "Ghoul Mask" then
-                    Ghoul_Mask:Set("âœ… : Ghoul Mask")
+                    Ghoul_Mask:Set("✅ : Ghoul Mask")
                 end
                 if v.Name == "Swan Glasses" then
-                    Swan_Glass:Set("âœ… : Swan Glass")
+                    Swan_Glass:Set("✅ : Swan Glass")
                 end
                 if v.Name == "Pale Scarf" then
-                    Pale_Scarf:Set("âœ… : Pale Scarf")
+                    Pale_Scarf:Set("✅ : Pale Scarf")
                 end
                 if v.Name == "Valkyrie Helmet" then
-                    Valkyrie_Helm:Set("âœ… : Valkyrie Helmet")
+                    Valkyrie_Helm:Set("✅ : Valkyrie Helmet")
                 end
             end
         end)
@@ -6955,7 +6950,7 @@ spawn(function()
 end)
 
 if World3 then
-Teleport:Seperator("ðŸï¸ Mirage Island ðŸï¸")
+Teleport:Seperator("🏝️ Mirage Island 🏝️")
 
 local FM = Teleport:Label('Your Not In Third Sea!!')
 local Mirragecheck = Teleport:Label('Yout Not In Third Sea!!')
@@ -6964,17 +6959,17 @@ task.spawn(function()
             while task.wait() do
                 pcall(function()
                     if game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149431" then
-                        FM:Set("ðŸŒ•: Full Moon 100%")
+                        FM:Set("🌕: Full Moon 100%")
                     elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149052" then
-                        FM:Set("ðŸŒ–â€™ : Full Moon 75%")
+                        FM:Set("🌖’ : Full Moon 75%")
                     elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709143733" then
-                        FM:Set("ðŸŒ—â€œ : Full Moon 50%")
+                        FM:Set("🌗“ : Full Moon 50%")
                     elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709150401" then
-                        FM:Set("ðŸŒ˜ : Full Moon 25%")
+                        FM:Set("🌘 : Full Moon 25%")
                     elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149680" then
-                        FM:Set("ðŸŒ˜: Full Moon 15%")
+                        FM:Set("🌘: Full Moon 15%")
                     else
-                        FM:Set("ðŸŒ‘: Full Moon 0%")
+                        FM:Set("🌑: Full Moon 0%")
                     end
                 end)
             end
@@ -6984,9 +6979,9 @@ spawn(function()
         pcall(function()
             while wait() do
     if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island') then
-    Mirragecheck:Set('ðŸï¸: Mirage Island is Spawning')
+    Mirragecheck:Set('🏝️: Mirage Island is Spawning')
     else
-      Mirragecheck:Set('âŒ: Mirage Island Not Found ' )end
+      Mirragecheck:Set('❌: Mirage Island Not Found ' )end
             end
         end)
 end)
@@ -7027,7 +7022,7 @@ end)
 end)
 end
 
-Teleport:Seperator("ðŸ—ºï¸ World - Server ðŸ—ºï¸")
+Teleport:Seperator("🗺️ World - Server 🗺️")
 
 Teleport:Button("Hop Server",function()
     local PlaceID = game.PlaceId
@@ -7107,7 +7102,7 @@ Teleport:Button("Travel to Third Sea", function()
 end) 
 
 
-    Teleport:Seperator("ðŸ‘¤ NPC Teleport ðŸ‘¤")
+    Teleport:Seperator("👤 NPC Teleport 👤")
 
  if World1 then
         Teleport:Dropdown("Select NPC",{
@@ -7250,7 +7245,7 @@ end)
         StopTween(_G.TeleportNPC)
     end)
 
-Teleport:Seperator("ðŸï¸ Island Teleport ðŸï¸")
+Teleport:Seperator("🏝️ Island Teleport 🏝️")
 
 --// Island Teleport
 Teleport:Button('Stop Tween', function()
@@ -7806,32 +7801,32 @@ Dungeon:Toggle("Auto Farm Kill Mob",_G.Raid,function(kill)
                      end
                  else
                      if game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5") then
-                         Distance = (game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5").Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude -- Ãƒ Ã‚Â¸Ã‹â€ Ãƒ Ã‚Â¸Ã‚Â¸Ãƒ Ã‚Â¸Ã¢â‚¬ÂÃƒ Ã‚Â¸Ã¢â‚¬â€Ãƒ Ã‚Â¸Ã‚ÂµÃƒ Ã‚Â¹Ã‹â€ Ãƒ Ã‚Â¸Ã‹â€ Ãƒ Ã‚Â¸Ã‚Â°Ãƒ Ã‚Â¹Ã¢â‚¬Å¾Ãƒ Ã‚Â¸Ã¢â‚¬Âº Position Only
-                         Speed = 150 -- Ãƒ Ã‚Â¸Ã¢â‚¬Å¾Ãƒ Ã‚Â¸Ã‚Â§Ãƒ Ã‚Â¸Ã‚Â²Ãƒ Ã‚Â¸Ã‚Â¡Ãƒ Ã‚Â¹Ã¢â€šÂ¬Ãƒ Ã‚Â¸Ã‚Â£Ãƒ Ã‚Â¹Ã¢â‚¬Â¡Ãƒ Ã‚Â¸Ã‚Â§Ãƒ Ã‚Â¸Ã¢â‚¬Å¡Ãƒ Ã‚Â¸Ã‚Â­Ãƒ Ã‚Â¸Ã¢â‚¬Â¡Ãƒ Ã‚Â¸Ã‚Â¡Ãƒ Ã‚Â¸Ã‚Â¶Ãƒ Ã‚Â¸Ã¢â‚¬Â¡
+                         Distance = (game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5").Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude -- Ã Â¸Ë†Ã Â¸Â¸Ã Â¸â€Ã Â¸â€”Ã Â¸ÂµÃ Â¹Ë†Ã Â¸Ë†Ã Â¸Â°Ã Â¹â€žÃ Â¸â€º Position Only
+                         Speed = 150 -- Ã Â¸â€žÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¹â‚¬Ã Â¸Â£Ã Â¹â€¡Ã Â¸Â§Ã Â¸â€šÃ Â¸Â­Ã Â¸â€¡Ã Â¸Â¡Ã Â¸Â¶Ã Â¸â€¡
                          tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Cubic)
                          tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5").CFrame*CFrame.new(0,20,0)})
                          tween:Play()
                      elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4") then
-                         Distance = (game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4").Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude -- Ãƒ Ã‚Â¸Ã‹â€ Ãƒ Ã‚Â¸Ã‚Â¸Ãƒ Ã‚Â¸Ã¢â‚¬ÂÃƒ Ã‚Â¸Ã¢â‚¬â€Ãƒ Ã‚Â¸Ã‚ÂµÃƒ Ã‚Â¹Ã‹â€ Ãƒ Ã‚Â¸Ã‹â€ Ãƒ Ã‚Â¸Ã‚Â°Ãƒ Ã‚Â¹Ã¢â‚¬Å¾Ãƒ Ã‚Â¸Ã¢â‚¬Âº Position Only
-                         Speed = 150 -- Ãƒ Ã‚Â¸Ã¢â‚¬Å¾Ãƒ Ã‚Â¸Ã‚Â§Ãƒ Ã‚Â¸Ã‚Â²Ãƒ Ã‚Â¸Ã‚Â¡Ãƒ Ã‚Â¹Ã¢â€šÂ¬Ãƒ Ã‚Â¸Ã‚Â£Ãƒ Ã‚Â¹Ã¢â‚¬Â¡Ãƒ Ã‚Â¸Ã‚Â§Ãƒ Ã‚Â¸Ã¢â‚¬Å¡Ãƒ Ã‚Â¸Ã‚Â­Ãƒ Ã‚Â¸Ã¢â‚¬Â¡Ãƒ Ã‚Â¸Ã‚Â¡Ãƒ Ã‚Â¸Ã‚Â¶Ãƒ Ã‚Â¸Ã¢â‚¬Â¡
+                         Distance = (game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4").Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude -- Ã Â¸Ë†Ã Â¸Â¸Ã Â¸â€Ã Â¸â€”Ã Â¸ÂµÃ Â¹Ë†Ã Â¸Ë†Ã Â¸Â°Ã Â¹â€žÃ Â¸â€º Position Only
+                         Speed = 150 -- Ã Â¸â€žÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¹â‚¬Ã Â¸Â£Ã Â¹â€¡Ã Â¸Â§Ã Â¸â€šÃ Â¸Â­Ã Â¸â€¡Ã Â¸Â¡Ã Â¸Â¶Ã Â¸â€¡
                          tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Cubic)
                          tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4").CFrame*CFrame.new(0,20,0)})
                          tween:Play()
                      elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3") then
-                         Distance = (game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3").Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude -- Ãƒ Ã‚Â¸Ã‹â€ Ãƒ Ã‚Â¸Ã‚Â¸Ãƒ Ã‚Â¸Ã¢â‚¬ÂÃƒ Ã‚Â¸Ã¢â‚¬â€Ãƒ Ã‚Â¸Ã‚ÂµÃƒ Ã‚Â¹Ã‹â€ Ãƒ Ã‚Â¸Ã‹â€ Ãƒ Ã‚Â¸Ã‚Â°Ãƒ Ã‚Â¹Ã¢â‚¬Å¾Ãƒ Ã‚Â¸Ã¢â‚¬Âº Position Only
-                         Speed = 150 -- Ãƒ Ã‚Â¸Ã¢â‚¬Å¾Ãƒ Ã‚Â¸Ã‚Â§Ãƒ Ã‚Â¸Ã‚Â²Ãƒ Ã‚Â¸Ã‚Â¡Ãƒ Ã‚Â¹Ã¢â€šÂ¬Ãƒ Ã‚Â¸Ã‚Â£Ãƒ Ã‚Â¹Ã¢â‚¬Â¡Ãƒ Ã‚Â¸Ã‚Â§Ãƒ Ã‚Â¸Ã¢â‚¬Å¡Ãƒ Ã‚Â¸Ã‚Â­Ãƒ Ã‚Â¸Ã¢â‚¬Â¡Ãƒ Ã‚Â¸Ã‚Â¡Ãƒ Ã‚Â¸Ã‚Â¶Ãƒ Ã‚Â¸Ã¢â‚¬Â¡
+                         Distance = (game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3").Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude -- Ã Â¸Ë†Ã Â¸Â¸Ã Â¸â€Ã Â¸â€”Ã Â¸ÂµÃ Â¹Ë†Ã Â¸Ë†Ã Â¸Â°Ã Â¹â€žÃ Â¸â€º Position Only
+                         Speed = 150 -- Ã Â¸â€žÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¹â‚¬Ã Â¸Â£Ã Â¹â€¡Ã Â¸Â§Ã Â¸â€šÃ Â¸Â­Ã Â¸â€¡Ã Â¸Â¡Ã Â¸Â¶Ã Â¸â€¡
                          tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Cubic)
                          tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3").CFrame*CFrame.new(0,20,0)})
                          tween:Play()
                      elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2") then
-                         Distance = (game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2").Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude -- Ãƒ Ã‚Â¸Ã‹â€ Ãƒ Ã‚Â¸Ã‚Â¸Ãƒ Ã‚Â¸Ã¢â‚¬ÂÃƒ Ã‚Â¸Ã¢â‚¬â€Ãƒ Ã‚Â¸Ã‚ÂµÃƒ Ã‚Â¹Ã‹â€ Ãƒ Ã‚Â¸Ã‹â€ Ãƒ Ã‚Â¸Ã‚Â°Ãƒ Ã‚Â¹Ã¢â‚¬Å¾Ãƒ Ã‚Â¸Ã¢â‚¬Âº Position Only
-                         Speed = 150 -- Ãƒ Ã‚Â¸Ã¢â‚¬Å¾Ãƒ Ã‚Â¸Ã‚Â§Ãƒ Ã‚Â¸Ã‚Â²Ãƒ Ã‚Â¸Ã‚Â¡Ãƒ Ã‚Â¹Ã¢â€šÂ¬Ãƒ Ã‚Â¸Ã‚Â£Ãƒ Ã‚Â¹Ã¢â‚¬Â¡Ãƒ Ã‚Â¸Ã‚Â§Ãƒ Ã‚Â¸Ã¢â‚¬Å¡Ãƒ Ã‚Â¸Ã‚Â­Ãƒ Ã‚Â¸Ã¢â‚¬Â¡Ãƒ Ã‚Â¸Ã‚Â¡Ãƒ Ã‚Â¸Ã‚Â¶Ãƒ Ã‚Â¸Ã¢â‚¬Â¡
+                         Distance = (game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2").Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude -- Ã Â¸Ë†Ã Â¸Â¸Ã Â¸â€Ã Â¸â€”Ã Â¸ÂµÃ Â¹Ë†Ã Â¸Ë†Ã Â¸Â°Ã Â¹â€žÃ Â¸â€º Position Only
+                         Speed = 150 -- Ã Â¸â€žÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¹â‚¬Ã Â¸Â£Ã Â¹â€¡Ã Â¸Â§Ã Â¸â€šÃ Â¸Â­Ã Â¸â€¡Ã Â¸Â¡Ã Â¸Â¶Ã Â¸â€¡
                          tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Cubic)
                          tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2").CFrame*CFrame.new(0,20,0)})
                          tween:Play()
                      elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1") then
-                         Distance = (game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1").Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude -- Ãƒ Ã‚Â¸Ã‹â€ Ãƒ Ã‚Â¸Ã‚Â¸Ãƒ Ã‚Â¸Ã¢â‚¬ÂÃƒ Ã‚Â¸Ã¢â‚¬â€Ãƒ Ã‚Â¸Ã‚ÂµÃƒ Ã‚Â¹Ã‹â€ Ãƒ Ã‚Â¸Ã‹â€ Ãƒ Ã‚Â¸Ã‚Â°Ãƒ Ã‚Â¹Ã¢â‚¬Å¾Ãƒ Ã‚Â¸Ã¢â‚¬Âº Position Only
-                         Speed = 150 -- Ãƒ Ã‚Â¸Ã¢â‚¬Å¾Ãƒ Ã‚Â¸Ã‚Â§Ãƒ Ã‚Â¸Ã‚Â²Ãƒ Ã‚Â¸Ã‚Â¡Ãƒ Ã‚Â¹Ã¢â€šÂ¬Ãƒ Ã‚Â¸Ã‚Â£Ãƒ Ã‚Â¹Ã¢â‚¬Â¡Ãƒ Ã‚Â¸Ã‚Â§Ãƒ Ã‚Â¸Ã¢â‚¬Å¡Ãƒ Ã‚Â¸Ã‚Â­Ãƒ Ã‚Â¸Ã¢â‚¬Â¡Ãƒ Ã‚Â¸Ã‚Â¡Ãƒ Ã‚Â¸Ã‚Â¶Ãƒ Ã‚Â¸Ã¢â‚¬Â¡
+                         Distance = (game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1").Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude -- Ã Â¸Ë†Ã Â¸Â¸Ã Â¸â€Ã Â¸â€”Ã Â¸ÂµÃ Â¹Ë†Ã Â¸Ë†Ã Â¸Â°Ã Â¹â€žÃ Â¸â€º Position Only
+                         Speed = 150 -- Ã Â¸â€žÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¹â‚¬Ã Â¸Â£Ã Â¹â€¡Ã Â¸Â§Ã Â¸â€šÃ Â¸Â­Ã Â¸â€¡Ã Â¸Â¡Ã Â¸Â¶Ã Â¸â€¡
                          tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Cubic)
                          tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1").CFrame*CFrame.new(0,20,0)})
                          tween:Play()
@@ -7839,7 +7834,7 @@ Dungeon:Toggle("Auto Farm Kill Mob",_G.Raid,function(kill)
                       if World2 then                        
                               Lab2 = Vector3.new(-6438.73535, 250.645355, -4501.50684)
                               local Distance = (Lab2 - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-                              local Speed = 150 -- Ãƒ Ã‚Â¸Ã¢â‚¬Å¾Ãƒ Ã‚Â¸Ã‚Â§Ãƒ Ã‚Â¸Ã‚Â²Ãƒ Ã‚Â¸Ã‚Â¡Ãƒ Ã‚Â¹Ã¢â€šÂ¬Ãƒ Ã‚Â¸Ã‚Â£Ãƒ Ã‚Â¹Ã¢â‚¬Â¡Ãƒ Ã‚Â¸Ã‚Â§Ãƒ Ã‚Â¸Ã¢â‚¬Å¡Ãƒ Ã‚Â¸Ã‚Â­Ãƒ Ã‚Â¸Ã¢â‚¬Â¡Ãƒ Ã‚Â¸Ã‚Â¡Ãƒ Ã‚Â¸Ã‚Â¶Ãƒ Ã‚Â¸Ã¢â‚¬Â¡
+                              local Speed = 150 -- Ã Â¸â€žÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¹â‚¬Ã Â¸Â£Ã Â¹â€¡Ã Â¸Â§Ã Â¸â€šÃ Â¸Â­Ã Â¸â€¡Ã Â¸Â¡Ã Â¸Â¶Ã Â¸â€¡
                               tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Cubic)
                               tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(-6438.73535, 250.645355, -4501.50684)})
                               tween:Play()
@@ -7850,7 +7845,7 @@ Dungeon:Toggle("Auto Farm Kill Mob",_G.Raid,function(kill)
                       if World3 then                        
                               Lab3 = Vector3.new(-5017.40869, 314.844055, -2823.0127, -0.925743818, 4.48217499e-08, -0.378151238, 4.55503146e-09, 1, 1.07377559e-07, 0.378151238, 9.7681621e-08, -0.925743818)
                               local Distance = (Lab3 - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-                              local Speed = 150 -- Ãƒ Ã‚Â¸Ã¢â‚¬Å¾Ãƒ Ã‚Â¸Ã‚Â§Ãƒ Ã‚Â¸Ã‚Â²Ãƒ Ã‚Â¸Ã‚Â¡Ãƒ Ã‚Â¹Ã¢â€šÂ¬Ãƒ Ã‚Â¸Ã‚Â£Ãƒ Ã‚Â¹Ã¢â‚¬Â¡Ãƒ Ã‚Â¸Ã‚Â§Ãƒ Ã‚Â¸Ã¢â‚¬Å¡Ãƒ Ã‚Â¸Ã‚Â­Ãƒ Ã‚Â¸Ã¢â‚¬Â¡Ãƒ Ã‚Â¸Ã‚Â¡Ãƒ Ã‚Â¸Ã‚Â¶Ãƒ Ã‚Â¸Ã¢â‚¬Â¡
+                              local Speed = 150 -- Ã Â¸â€žÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¹â‚¬Ã Â¸Â£Ã Â¹â€¡Ã Â¸Â§Ã Â¸â€šÃ Â¸Â­Ã Â¸â€¡Ã Â¸Â¡Ã Â¸Â¶Ã Â¸â€¡
                               tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Cubic)
                               tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(-5017.40869, 314.844055, -2823.0127, -0.925743818, 4.48217499e-08, -0.378151238, 4.55503146e-09, 1, 1.07377559e-07, 0.378151238, 9.7681621e-08, -0.925743818)})
                               tween:Play() 
@@ -8204,7 +8199,7 @@ end
         end)
     end
 
-Dungeon:Seperator("ðŸ§¿ Esp Section ðŸ§¿")
+Dungeon:Seperator("🧿 Esp Section 🧿")
 
 Dungeon:Toggle('Chest ESP', false, function(ce)
     ChestESP = ce
@@ -9805,7 +9800,7 @@ end)
 		thieunang.Parent = game:GetService("Players").LocalPlayer.PlayerGui.BubbleChat
 		thieunang.Position = UDim2.new(0,800,0.63,0)
 		local n = formatNumber(game.Players.LocalPlayer.Data.Fragments.Value)
-		thieunang.Text = "Ãƒâ€ Ã¢â‚¬â„¢"..n
+		thieunang.Text = "Ã†â€™"..n
 		print("Done")
 		pcall(function() 
 			game:GetService("Players").LocalPlayer.PlayerGui.Main.MenuButton:Destroy()
