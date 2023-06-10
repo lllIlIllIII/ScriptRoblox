@@ -32,12 +32,13 @@ function CheckAntiCheatBypass()
 
 CheckAntiCheatBypass()
 
+
+
+Set:Seperator("Settings")
 Set:Toggle("AntiCheat Bypass✅", true, function(value)
   _G.SafeFarm = value
 CheckAntiCheatBypass()
 end)
-
-Set:Seperator("Settings")
 Set:Toggle("Remove Attack",true,function(value)
          _G.RemoveAnimation = value
 	end)
@@ -2499,7 +2500,7 @@ Main:Toggle('Auto Try Luck', TryLuck, function(gravefunc)
     end)
 end
 
-Main:Seperator(" Mobs")
+Main:Seperator("Mobs")
 
 Main:Dropdown("Select Monster",tableMon, function(monsterlistfunc)
   SelectMonster = monsterlistfunc
@@ -3359,8 +3360,8 @@ spawn(function()
     end)
   end)
 
-KillPercent = 25
-Main:Slider('Kill Mobs At Health min ... %',1,100,100, function(KillPercentfunc)
+KillPercent = 30
+Main:Slider('Kill Mobs At Health min ... %',1,100,30, function(KillPercentfunc)
   KillPercent = KillPercentfunc
   end)
 
@@ -6502,6 +6503,22 @@ end)
     end)
 
 Combat:Seperator("🤺 Players Combat 🤺")
+
+   Combat:Toggle("Enabled PvP",false,function(value)
+        _G.EnabledPvP = value
+    end)
+    
+    spawn(function()
+        pcall(function()
+            while wait(.1) do
+                if _G.EnabledPvP then
+                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.PvpDisabled.Visible == true then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("EnablePvp")
+                    end
+                end
+            end
+        end)
+    end)
 PlayerList = {}
 
 for i,v in pairs(game.Players:GetChildren()) do  
