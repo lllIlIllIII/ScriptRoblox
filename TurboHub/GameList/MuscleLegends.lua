@@ -135,21 +135,13 @@ end)
 Main:Button("Teleport To Player",function()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =  game.Players[TpPlayer].Character.HumanoidRootPart.CFrame * CFrame.new(0,20,1)
 end)
-Main:Toggle("Always Tp",false,function(state)
-_G.Mmz = (state and true or false)
-	wait()
-	while _G.Mmz == true do
-		wait()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =  game.Players[TpPlayer].Character.HumanoidRootPart.CFrame * CFrame.new(0,2,1)
 
-end
-end)
  
-Main:Slider("Speed",0,90000,300,function(v)
+Main:Slider("Speed",0,500,200,function(v)
  game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
  end)
 
-Main:Slider("Jump",0,1000,50,function(v)
+Main:Slider("Jump",0,100,50,function(v)
  game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
  end)
     
@@ -304,9 +296,15 @@ end
 --     end
 -- end
 AutoFarm:Seperator("Rocks")
-AutoFarm:Dropdown("Select Rocks", Rocks, function(String)
-    Rocks = String
-end)
+Rocks = {}
+for i, v in pairs(game:GetService("Workspace").machinesFolder:GetChildren()) do
+    if v:FindFirstChild("Rock") then
+        table.insert(Rocks, v.Name)
+    end
+end
+ AutoFarm:Dropdown("Select Rocks", Rocks, function(String)
+        Rocks = String
+    end)
 AutoFarm:Toggle("Auto Durability", _G.WorkOut1, function(State)
     _G.WorkOut1 = State
     game:GetService("RunService").Stepped:connect(
@@ -336,12 +334,6 @@ AutoFarm:Toggle("Auto Durability", _G.WorkOut1, function(State)
     end
     end)
     end)
-    Rocks = {}
-    for i, v in pairs(game:GetService("Workspace").machinesFolder:GetChildren()) do
-        if v:FindFirstChild("Rock") then
-            table.insert(Rocks, v.Name)
-        end
-    end
    
 AutoFarm:Seperator("FrostGym")
 local thisFarmFrost = {
