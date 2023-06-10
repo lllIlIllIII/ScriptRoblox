@@ -14,59 +14,59 @@ local RaceV4 = Library:Tab("RaceV4","rbxassetid://11446900930")
 
 
 
---   Misc:Toggle("Remove Attack",true,function(value)
---          _G.RemoveAnimation = value
--- 	end)
+  Misc:Toggle("Remove Attack",true,function(value)
+         _G.RemoveAnimation = value
+	end)
 
--- 		local Client = game.Players.LocalPlayer
--- 		local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
--- 		local STOPRL = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
--- 		if not shared.orl then
--- 		shared.orl = STOPRL.wrapAttackAnimationAsync
--- 		end
--- 		if not shared.cpc then
--- 		shared.cpc = STOP.play 
--- 		end
--- 		spawn(function()
--- 		game:GetService("RunService").Stepped:Connect(function()
--- 			STOPRL.wrapAttackAnimationAsync = function(a,b,c,d,func)
--- 				local Hits = STOPRL.getBladeHits(b,c,d)
--- 				if Hits then
--- 					if _G.RemoveAnimation or _G.AutoKaitan or _G.Auto_Farm_Level then
--- 					       if _G.AutoKaitan or _G.Auto_Farm_Level then
--- 						STOP.play = function() end
--- 						a:Play(0.01,0.01,0.01)
--- 						func(Hits)
--- 						STOP.play = shared.cpc
--- 						wait(a.length * 0.5)
--- 						a:Stop()
--- 					else
--- 						func(Hits)
--- 						STOP.play = shared.cpc
--- 						wait(a.length * 0.5)
--- 						a:Stop()
--- 					end
--- 				end
--- 				end
--- 			end
--- 		end)
--- 		end)
+		local Client = game.Players.LocalPlayer
+		local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
+		local STOPRL = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+		if not shared.orl then
+		shared.orl = STOPRL.wrapAttackAnimationAsync
+		end
+		if not shared.cpc then
+		shared.cpc = STOP.play 
+		end
+		spawn(function()
+		game:GetService("RunService").Stepped:Connect(function()
+			STOPRL.wrapAttackAnimationAsync = function(a,b,c,d,func)
+				local Hits = STOPRL.getBladeHits(b,c,d)
+				if Hits then
+					if _G.RemoveAnimation or _G.AutoKaitan or _G.Auto_Farm_Level then
+					       if _G.AutoKaitan or _G.Auto_Farm_Level then
+						STOP.play = function() end
+						a:Play(0.01,0.01,0.01)
+						func(Hits)
+						STOP.play = shared.cpc
+						wait(a.length * 0.5)
+						a:Stop()
+					else
+						func(Hits)
+						STOP.play = shared.cpc
+						wait(a.length * 0.5)
+						a:Stop()
+					end
+				end
+				end
+			end
+		end)
+		end)
 		
---     Misc:Toggle("Remove Sound",true,function(value)
---         _G.Remove_Effect = value
--- 	end)
+    Misc:Toggle("Remove Sound",true,function(value)
+        _G.Remove_Effect = value
+	end)
 
--- spawn(function()
---     game:GetService('RunService').Stepped:Connect(function()
---         if _G.Remove_Effect or _G.AutoKaitan then
---             for i, v in pairs(game.Workspace["_WorldOrigin"]:GetChildren()) do
---                 if v.Name == "CurvedRing" or v.Name == "SwordSlash" or v.Name == "Sounds" or v.Name == "SlashHit" or v.Name == "DamageCounter" then--or v.Name == "SlashHit"
---                     v:Destroy() 
---                 end
---             end
---         end
---     end)
--- end)
+spawn(function()
+    game:GetService('RunService').Stepped:Connect(function()
+        if _G.Remove_Effect or _G.AutoKaitan then
+            for i, v in pairs(game.Workspace["_WorldOrigin"]:GetChildren()) do
+                if v.Name == "CurvedRing" or v.Name == "SwordSlash" or v.Name == "Sounds" or v.Name == "SlashHit" or v.Name == "DamageCounter" then--or v.Name == "SlashHit"
+                    v:Destroy() 
+                end
+            end
+        end
+    end)
+end)
 
 
 Misc:Toggle("Remove Death Effect",true,function(value)
@@ -85,49 +85,47 @@ spawn(function()
     end)
 end)
 
--- Misc:Toggle("Disabled Damage",true,function(value)
---         DisabledDamage()
---         _G.DisabledDamage = value
---     end)
+Misc:Toggle("Disabled Damage",true,function(value)
+        DisabledDamage()
+        _G.DisabledDamage = value
+    end)
 
--- [require module]
 
--- local CombatFramework = require(game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("CombatFramework"))
--- local CombatFrameworkR = getupvalues(CombatFramework)[2]
--- local RigController = require(game:GetService("Players")["LocalPlayer"].PlayerScripts.CombatFramework.RigController)
--- local RigControllerR = getupvalues(RigController)[2]
--- local realbhit = require(game.ReplicatedStorage.CombatFramework.RigLib)
--- local cooldownfastattack = tick()
 
--- [Disabled Damage Interface]
--- function DisabledDamage()
--- 	task.spawn(function()
--- 		while wait() do
--- 			pcall(function()
--- 				if _G.DisabledDamage then
--- 					game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = false
--- 				else
--- 					game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = true
--- 				end
--- 			end)
--- 		end
--- 	end)
--- end
+
+
+
+function DisabledDamage()
+	task.spawn(function()
+		while wait() do
+			pcall(function()
+				if _G.DisabledDamage then
+					game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = false
+				else
+					game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = true
+				end
+			end)
+		end
+	end)
+end
+
+
 spawn(function()
     game:GetService('RunService').Stepped:Connect(function()
-game:GetService("ReplicatedStorage").Notification:Destroy()
+-- game:GetService("ReplicatedStorage").Notification:Destroy()
 game:GetService("ReplicatedStorage").Effect.Container.LevelUp:Destroy()
 game:GetService("ReplicatedStorage").Util.Sound:Destroy()
 game:GetService("ReplicatedStorage").Util.Sound.Storage.Other:FindFirstChild("LevelUp_Proxy"):Destroy()
 game:GetService("ReplicatedStorage").Util.Sound.Storage.Other:FindFirstChild("LevelUp"):Destroy()
 game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
-            -- for i, v in pairs(game.Workspace["_WorldOrigin"]:GetChildren()) do
-            --     if v.Name == "CurvedRing" or v.Name == "SwordSlash" or v.Name == "Sounds" or v.Name == "SlashHit" or v.Name == "DamageCounter" then--or v.Name == "SlashHit"
-            --         v:Destroy() 
-            --     end
-            -- end
+            for i, v in pairs(game.Workspace["_WorldOrigin"]:GetChildren()) do
+                if v.Name == "CurvedRing" or v.Name == "SwordSlash" or v.Name == "Sounds" or v.Name == "SlashHit" or v.Name == "DamageCounter" then--or v.Name == "SlashHit"
+                    v:Destroy() 
+                end
+            end
     end)
 end)
+
 
 Main:Seperator("Server")
 
