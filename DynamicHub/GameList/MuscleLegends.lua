@@ -1,4 +1,4 @@
-local Update = loadstring(Game:HttpGet"https://raw.githubusercontent.com/lllIlIllIII/ScriptRoblox/main/DynamicHub/DynamicHubLibrary.lua")()
+local Update = loadstring(Game:HttpGet"https://raw.githubusercontent.com/lllIlIllIII/ScriptRoblox/main/TurboHub/Library.lua")()
 local win = Update:Window("Muscle Legends")
 local Main = win:Tab("Main", "rbxassetid://6026568198")
 local AutoFarm = win:Tab("AutoFarm", "http://www.roblox.com/asset/?id=7040410130")
@@ -16,7 +16,7 @@ player.Idled:connect(function()
 		game.VirtualUser:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
 	end
 end)
-Main:Seperator("Dynamic Hub")
+Main:Seperator("Turbo Hub")
 Main:Label("User : "..game.Players.LocalPlayer.DisplayName)
 Time = Main:Label("Executer Time")
 
@@ -135,21 +135,13 @@ end)
 Main:Button("Teleport To Player",function()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =  game.Players[TpPlayer].Character.HumanoidRootPart.CFrame * CFrame.new(0,20,1)
 end)
-Main:Toggle("Always Tp",false,function(state)
-_G.Mmz = (state and true or false)
-	wait()
-	while _G.Mmz == true do
-		wait()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =  game.Players[TpPlayer].Character.HumanoidRootPart.CFrame * CFrame.new(0,2,1)
 
-end
-end)
  
-Main:Slider("Speed",0,90000,300,function(v)
+Main:Slider("Speed",0,500,200,function(v)
  game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
  end)
 
-Main:Slider("Jump",0,1000,50,function(v)
+Main:Slider("Jump",0,100,50,function(v)
  game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
  end)
     
