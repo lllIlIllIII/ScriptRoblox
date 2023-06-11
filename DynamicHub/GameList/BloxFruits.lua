@@ -296,9 +296,9 @@ spawn(function()
         if _G.FastAttackDelay then
             pcall(function()
                 if _G.FastAttackDelay == "MOBILE" then
-                    _G.FastAttackDelay = 0.1
+                    _G.FastAttackDelay = 0.2
                 elseif _G.FastAttackDelay == "PC" then
-                    _G.FastAttackDelay = 0
+                    _G.FastAttackDelay = 0.1
                 end
             end)
         end
