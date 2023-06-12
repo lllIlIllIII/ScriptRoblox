@@ -1,7 +1,7 @@
 local Update =  loadstring(Game:HttpGet"https://raw.githubusercontent.com/lllIlIllIII/ScriptRoblox/main/DynamicHub/DynamicHubLibrary.lua")()
 
 
-local Library = Update:Window("Domadic HUB","Blox Fruit | Version Premium NoKey","DarkRaiGui",Enum.KeyCode.RightControl);
+local Library = Update:Window("Dynamic Hub","Blox Fruit",Enum.KeyCode.RightControl);
 
 local Main = Library:Tab("Main","rbxassetid://11446825283")
 local Set = Library:Tab("Setting","rbxassetid://11446835336")
@@ -39,10 +39,11 @@ CheckAntiCheatBypass()
 
 
 Set:Seperator("Settings")
-Set:Toggle("AntiCheat Bypass✅", true, function(value)
+Set:Toggle("AntiCheat Bypass ✅", true, function(value)
   _G.SafeFarm = value
 CheckAntiCheatBypass()
 end)
+Set:Seperator('Effects')
 Set:Toggle("Remove Attack",true,function(value)
          _G.RemoveAnimation = value
 	end)
@@ -81,7 +82,7 @@ Set:Toggle("Remove Attack",true,function(value)
 		end)
 		end)
 		
-    Set:Toggle("Remove Sound",true,function(value)
+    Set:Toggle("Remove Effect",true,function(value)
         _G.Remove_Effect = value
 	end)
 
@@ -160,8 +161,7 @@ end)
 
 
 
-Main:Seperator("Dynamic Hub")
-Main:Label("Dev -> RelzBlox🅥")
+
 Time = Main:Label("Executer Time")
 
 function UpdateTime()
@@ -316,7 +316,7 @@ end
 end)
 
 --// Fast Attack
-local AttackList = {"MOBILE", "PC" , "SLOW"}
+local AttackList = {"PC", "MOBILE" , "SLOW"}
 _G.FastAttackDelay = "MOBILE"
 Main:Dropdown("Fast Attack Mode", AttackList,function(adl)
  _G.FastAttackDelay = adl
@@ -383,7 +383,7 @@ task.wait()
 end
 end)
 
-
+Set:Seperator("Farm Settings")
 _G.DisFarm = 35
 Set:Slider("Farm Distance",1,100,35,function(value)
 _G.DisFarm = value
@@ -391,9 +391,9 @@ end)
 
 
 
-Set:Toggle('Bypass TeTeleport', BypassTP, function(vale)
-BypassTP = vale
-end)
+-- Set:Toggle('Bypass TeTeleport', BypassTP, function(vale)
+-- BypassTP = vale
+-- end)
 
 _G.FastAttack = true
 Set:Toggle('Fast Attack', _G.FastAttack, function(famobile)
@@ -459,6 +459,13 @@ end)
 local CamShake = require(game.ReplicatedStorage.Util.CameraShaker)
 CamShake:Stop()
 
+
+_G.BringDist = 240
+Set:Slider("Bring Distance", 1, 1000, 240, function(x)
+_G.BringDist = x
+end)
+
+
 Set:Toggle("Bring Mob", true, function(Value)
 BringMobs = Value
 end)
@@ -468,7 +475,7 @@ while task.wait() do
 if BringMobs or _G.Auto_Farm_Level then
 pcall(function()
  for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
- if v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 240 then
+ if v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= _G.BringDist then
  if InMyNetWork(v.HumanoidRootPart) then
  v.HumanoidRootPart.CFrame = FarmPos
  v.Humanoid.JumpPower = 0
@@ -522,7 +529,7 @@ end
 end
 end)
 
-Set:Toggle("Auto Buso Haki",true, function(busohakifunc)
+Main:Toggle("Auto Buso Haki",true, function(busohakifunc)
 BusoHaki = busohakifunc
 end)
 spawn(function()
@@ -8482,7 +8489,7 @@ spawn(function()
  end
 end)
 
- Fruit:Seperator("❌ Sniper  ❌//")
+ Fruit:Seperator("❌ Sniper ❌")
  
  FruitList = {
      "Bomb-Bomb",
@@ -8738,7 +8745,7 @@ Shop:Toggle("Auto Buy Abilities", false, function(t)
  end
 end)
 
-Shop:Seperator("⛵ Boats  ⛵//")
+Shop:Seperator("⛵ Boats ⛵")
 
 BoatList = {
  "Pirate Sloop",
@@ -8785,45 +8792,45 @@ end)
 
  Shop:Seperator("🤺 Fighting Style 🤺")
  
- Shop:Button("Buy Black Leg [ $150,000 Beli ]",function()
+ Shop:Button("Black Leg [ $150,000 Beli ]",function()
      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
  end)
  
- Shop:Button("Buy Electro [ $550,000 Beli ]",function()
+ Shop:Button("Electro [ $550,000 Beli ]",function()
      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro")
  end)
  
- Shop:Button("Buy Fishman Karate [ $750,000 Beli ]",function()
+ Shop:Button("Fishman Karate [ $750,000 Beli ]",function()
      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyFishmanKarate")
  end)
  
- Shop:Button("Buy Dragon Claw [ $1,500 Fragments ]",function()
+ Shop:Button("Dragon Claw [ $1,500 Fragments ]",function()
      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","DragonClaw","1")
      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","DragonClaw","2")
  end)
  
- Shop:Button("Buy Superhuman [ $3,000,000 Beli ]",function()
+ Shop:Button("Superhuman [ $3,000,000 Beli ]",function()
      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman")
  end)
  
- Shop:Button("Buy Death Step [ $5,000 Fragments $5,000,000 Beli ]",function()
+ Shop:Button("Death Step [ $5,000 Fragments $5,000,000 Beli ]",function()
      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
  end)
  
- Shop:Button("Buy Sharkman Karate [ $5,000 Fragments $2,500,000 Beli ]",function()
+ Shop:Button("Sharkman Karate [ $5,000 Fragments $2,500,000 Beli ]",function()
      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true)
      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate")
  end)
  
- Shop:Button("Buy Electric Claw [ $5,000 Fragments $3,000,000 Beli ]",function()
+ Shop:Button("Electric Claw [ $5,000 Fragments $3,000,000 Beli ]",function()
      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
  end)
  
- Shop:Button("Buy Dragon Talon [ $5,000 Fragments $3,000,000 Beli ]",function()
+ Shop:Button("Dragon Talon [ $5,000 Fragments $3,000,000 Beli ]",function()
      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
  end)
 
- Shop:Button("Buy God Human [ $5,000 Fragments $5,000,000 Beli ]",function()
+ Shop:Button("God Human [ $5,000 Fragments $5,000,000 Beli ]",function()
      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
  end)
  -----Shop----------------
