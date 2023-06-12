@@ -529,9 +529,7 @@ end
 end
 end)
 
-Main:Toggle("Auto Buso Haki",true, function(busohakifunc)
-BusoHaki = busohakifunc
-end)
+
 spawn(function()
 while wait(.1) do
 if BusoHaki then
@@ -3592,7 +3590,9 @@ end)
 end
 
 
-
+Main:Toggle("Auto Buso Haki",true, function(busohakifunc)
+BusoHaki = busohakifunc
+end)
 
 Farm:Seperator("Fighting Style")
 
